@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mike &amp; Miya — The Wedding</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage:#8f9c77;
+    --sage-deep:#6f7c57;
+    --sage-soft:#aab392;
+    --sage-bg:#9aa87f;       /* FAQ block */
+    --sage-tint:#dfe4d4;
+    --cream:#f4f1e8;
+    --ivory:#fdfcf8;
+    --ink:#4c4940;
+    --muted:#8c8779;
+    --line:#e3ddcf;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'EB Garamond',Georgia,serif;color:var(--ink);background:var(--ivory);line-height:1.85;font-size:17px;overflow-x:hidden}
+  body.locked{overflow:hidden;height:100vh}
+  img{max-width:100%;display:block}
+  a{color:var(--sage-deep)}
+
+  /* Shared type */
+  .script{font-family:'Pinyon Script',cursive;font-weight:400;color:var(--sage-deep);line-height:1.1}
+  .eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;letter-spacing:1px;color:var(--sage-deep);text-align:center}
+  .smallcaps{font-family:'Cormorant Garamond',serif;text-transform:uppercase;letter-spacing:3px;font-size:.78rem;color:var(--sage-deep)}
+  .rule{width:60px;height:1px;background:var(--sage-soft);margin:20px auto}
+  .center{text-align:center}
+  .body-text{max-width:560px;margin:0 auto;text-align:justify;letter-spacing:.3px}
+  .body-text p{margin-bottom:18px}
+
+  /* ===== ENVELOPE INTRO ===== */
+  #intro{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 50% 35%,#fbfaf4,#e7e3d6);transition:opacity .9s ease,visibility .9s}
+  #intro.gone{opacity:0;visibility:hidden}
+  .env{position:relative;width:300px;height:200px;max-width:78vw;cursor:pointer;perspective:1000px;filter:drop-shadow(0 18px 30px rgba(90,90,70,.22))}
+  .env .pocket{position:absolute;inset:0;background:var(--ivory);border:1px solid var(--line);border-radius:4px;overflow:hidden;z-index:3}
+  .env .pocket::before{content:"";position:absolute;bottom:0;left:0;right:0;height:0;border-style:solid;border-width:0 150px 118px 150px;border-color:transparent transparent #f0ecdf transparent;z-index:4}
+  .env .pocket::after{content:"";position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:100px 150px 0 0;border-color:#f4f0e4 transparent transparent transparent;opacity:.6}
+  .env .card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78%;height:128%;background:var(--ivory);
+    border:1px solid var(--line);z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transition:transform 1s cubic-bezier(.5,0,.2,1);box-shadow:0 6px 18px rgba(0,0,0,.08)}
+  .env .card .mono{font-family:'Pinyon Script',cursive;font-size:2.4rem;color:var(--sage-deep)}
+  .env .card .std{font-family:'Cormorant Garamond',serif;letter-spacing:4px;text-transform:uppercase;font-size:.62rem;color:var(--muted);margin-top:4px}
+  .env .flap{position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:100px 150px 0 150px;
+    border-color:#eef0e3 transparent transparent transparent;transform-origin:top;z-index:6;transition:transform .9s ease,z-index .9s}
+  .env.open .flap{transform:rotateX(180deg);z-index:1}
+  .env.open .card{transform:translate(-50%,-185%);z-index:7;box-shadow:0 20px 40px rgba(0,0,0,.18)}
+  #intro .open-hint{margin-top:54px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;font-size:.72rem;font-family:'Cormorant Garamond',serif;animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+
+  /* ===== NAV ===== */
+  nav{position:fixed;top:0;left:0;right:0;z-index:120;display:flex;align-items:center;justify-content:center;gap:8px;
+    padding:13px 10px;flex-wrap:wrap;background:rgba(253,252,248,0);transition:background .4s,box-shadow .4s}
+  nav.solid{background:rgba(253,252,248,.95);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--line)}
+  nav a{text-decoration:none;font-family:'Cormorant Garamond',serif;text-transform:uppercase;letter-spacing:2px;font-size:.72rem;
+    color:var(--ink);padding:7px 16px;border:1px solid transparent;border-radius:30px;transition:.25s}
+  nav.over-hero a{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.35)}
+  nav a:hover{border-color:var(--sage-soft);color:var(--sage-deep)}
+  nav.over-hero a:hover{color:#fff;border-color:rgba(255,255,255,.7)}
+  nav a.rsvp-pill{background:var(--sage);color:#fff;border-radius:30px;text-shadow:none}
+  nav a.rsvp-pill:hover{background:var(--sage-deep);color:#fff;border-color:transparent}
+  @media(max-width:620px){nav a{font-size:.6rem;letter-spacing:1px;padding:5px 10px}}
+
+  /* ===== HERO ===== */
+  .hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:flex-start;justify-content:center;text-align:center;color:#fff;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:
+      linear-gradient(180deg,rgba(70,74,58,.30),rgba(70,74,58,.05) 45%,rgba(70,74,58,.35)),
+      url('photos/hero.jpg') center/cover no-repeat,
+      linear-gradient(135deg,#c7cdb7,#9aa382 55%,#7c855f);
+    transform:scale(1.07);animation:slowzoom 16s ease-out forwards}
+  @keyframes slowzoom{to{transform:scale(1)}}
+  .hero-inner{position:relative;z-index:2;margin-top:16vh;padding:0 24px;opacity:0;animation:fadeUp 1.6s ease .2s forwards}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+  .hero .names{font-family:'Pinyon Script',cursive;font-size:clamp(3.6rem,11vw,6.6rem);line-height:.95;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.25)}
+  .hero .sub{margin-top:8px;font-family:'Cormorant Garamond',serif;letter-spacing:5px;text-transform:uppercase;font-size:.95rem}
+  .hero .sub em{font-style:italic;text-transform:none;letter-spacing:1px;font-size:1.05rem}
+  .scroll-cue{position:absolute;bottom:26px;z-index:2;left:0;right:0;font-family:'Cormorant Garamond',serif;letter-spacing:3px;text-transform:uppercase;font-size:.66rem;opacity:.85;animation:bob 2.4s infinite}
+  .scroll-cue::after{content:"";display:block;width:1px;height:30px;background:#fff;margin:8px auto 0;opacity:.7}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+
+  /* ===== REVEAL ===== */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  section{padding:96px 24px}
+  .wrap{max-width:880px;margin:0 auto}
+
+  /* ===== INVITED + COUNTDOWN ===== */
+  .invited{text-align:center}
+  .invited .script{font-size:clamp(3rem,8vw,4.4rem);margin-bottom:18px}
+  .invited p{max-width:520px;margin:0 auto 16px}
+  .invited .ask{font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--sage-deep)}
+  .btn{display:inline-block;cursor:pointer;background:var(--sage);color:#fff;border:none;text-decoration:none;
+    padding:14px 46px;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:3px;text-transform:uppercase;
+    border-radius:2px;transition:background .25s;margin-top:14px}
+  .btn:hover{background:var(--sage-deep)}
+  .countbar{display:flex;align-items:flex-end;justify-content:center;gap:30px;margin-top:64px;flex-wrap:wrap}
+  .countbar .label{font-family:'Pinyon Script',cursive;font-size:2.6rem;color:var(--sage-deep);line-height:.9;text-align:right}
+  .count{display:flex;gap:22px}
+  .count .num{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.4rem;color:var(--ink);line-height:1}
+  .count .lbl{text-transform:uppercase;letter-spacing:2px;font-size:.6rem;color:var(--muted);margin-top:6px;text-align:center}
+  .count .unit{min-width:52px;text-align:center}
+
+  /* ===== GALLERY ===== */
+  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:12px;margin-top:8px}
+  .gallery .ph{background:linear-gradient(135deg,var(--sage-tint),#cdd3bd);overflow:hidden;
+    display:flex;align-items:center;justify-content:center;color:var(--sage-deep);font-family:'Cormorant Garamond',serif;font-size:.9rem}
+  .gallery .ph img{width:100%;height:100%;object-fit:cover}
+  .gallery .a{grid-column:span 1;grid-row:span 1}
+  .gallery .big{grid-column:span 2;grid-row:span 2}
+  @media(max-width:680px){.gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}.gallery .big{grid-column:span 2}}
+
+  /* ===== STORY ===== */
+  .story{background:var(--ivory)}
+  .story .script{font-size:clamp(2.6rem,7vw,3.8rem);text-align:center;margin:4px 0 8px}
+
+  /* ===== RECEPTION ===== */
+  .reception{background:var(--cream)}
+  .reception .script{font-size:clamp(2.6rem,7vw,3.8rem);text-align:center}
+  .recep-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;margin-top:30px}
+  .recep-grid .info p{margin-bottom:6px}
+  .recep-grid .pin{font-family:'Cormorant Garamond',serif;letter-spacing:2px;text-transform:uppercase;font-size:.8rem;color:var(--sage-deep);margin-bottom:6px}
+  .recep-grid .addr{font-style:italic;color:var(--ink)}
+  .cakewrap{position:relative;padding:22px 0 0 22px}
+  .cakewrap::before{content:"";position:absolute;top:0;left:0;width:62%;height:88%;background:var(--sage-soft);opacity:.55;z-index:0}
+  .cakewrap .ph{position:relative;z-index:1;aspect-ratio:4/5;background:linear-gradient(135deg,var(--sage-tint),#cdd3bd);
+    display:flex;align-items:center;justify-content:center;color:var(--sage-deep);font-family:'Cormorant Garamond',serif;overflow:hidden}
+  .cakewrap .ph img{width:100%;height:100%;object-fit:cover}
+  @media(max-width:680px){.recep-grid{grid-template-columns:1fr;gap:30px}}
+
+  /* ===== GIFTS ===== */
+  .gifts{background:var(--ivory);text-align:center}
+  .gifts .script{font-size:clamp(2.6rem,7vw,3.8rem)}
+  .gift-photos{display:flex;justify-content:center;gap:18px;margin:30px 0;flex-wrap:wrap}
+  .gift-photos .ph{width:150px;aspect-ratio:3/4;border:6px solid #fff;box-shadow:0 8px 18px rgba(0,0,0,.08);
+    background:linear-gradient(135deg,var(--sage-tint),#cdd3bd);overflow:hidden;
+    display:flex;align-items:center;justify-content:center;color:var(--sage-deep);font-family:'Cormorant Garamond',serif;font-size:.8rem}
+  .gift-photos .ph:nth-child(2){transform:translateY(-14px)}
+  .gift-photos .ph img{width:100%;height:100%;object-fit:cover}
+  .gifts .body-text{margin-bottom:24px}
+  .gift-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+  /* ===== FAQ ===== */
+  .faq{background:var(--sage-bg);color:#fff}
+  .faq .script{font-size:clamp(2.6rem,7vw,3.8rem);color:#fff;text-align:center}
+  .faq .rule{background:rgba(255,255,255,.6)}
+  .faq-list{max-width:620px;margin:34px auto 0}
+  .faq-item{background:var(--ivory);margin-bottom:12px;border-radius:2px;overflow:hidden}
+  .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:18px 22px;
+    font-family:'Cormorant Garamond',serif;text-transform:uppercase;letter-spacing:2px;font-size:.85rem;color:var(--sage-deep);
+    display:flex;justify-content:space-between;align-items:center;gap:14px}
+  .faq-q .plus{font-size:1.3rem;transition:transform .3s;color:var(--sage)}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--ink)}
+  .faq-a p{padding:0 22px 18px;text-align:center}
+
+  /* ===== RSVP FORM ===== */
+  .rsvpsec{background:var(--cream)}
+  .rsvpsec .script{font-size:clamp(2.6rem,7vw,3.8rem);text-align:center}
+  .rsvp-wrap{max-width:560px;margin:0 auto}
+  form label{display:block;margin:18px 0 6px;font-size:.95rem;letter-spacing:.5px}
+  form input,form select,form textarea{width:100%;padding:13px 15px;font-family:inherit;font-size:1rem;
+    background:var(--ivory);border:1px solid var(--line);border-radius:2px;color:var(--ink)}
+  form input:focus,form select:focus,form textarea:focus{outline:none;border-color:var(--sage)}
+  form .btn{width:100%}
+  .deadline{text-align:center;color:var(--muted);font-style:italic;margin-top:16px}
+
+  footer{background:var(--sage-bg);color:#fff;text-align:center;padding:64px 24px}
+  footer .script{color:#fff;font-size:3rem;display:block;margin-bottom:4px}
+  footer .smallcaps{color:rgba(255,255,255,.85)}
+</style>
+</head>
+<body class="locked">
+
+<!-- ENVELOPE INTRO -->
+<div id="intro">
+  <div class="env" id="env" role="button" tabindex="0" aria-label="Open invitation">
+    <div class="pocket"></div>
+    <div class="card">
+      <div class="mono">M &amp; M</div>
+      <div class="std">The Wedding</div>
+    </div>
+    <div class="flap"></div>
+  </div>
+  <div class="open-hint">Tap to open your invitation</div>
+</div>
+
+<!-- NAV -->
+<nav id="nav" class="over-hero">
+  <a href="#invited">Invitation</a>
+  <a href="#story">Story</a>
+  <a href="#reception">Details</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#gifts">Gifts</a>
+  <a href="#faq">FAQ</a>
+  <a href="#rsvp" class="rsvp-pill">RSVP</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="names">Mike &amp; Miya</div>
+    <div class="sub"><em>the</em> WEDDING</div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<!-- INVITED + COUNTDOWN -->
+<section class="invited reveal" id="invited">
+  <div class="wrap">
+    <div class="script">You are invited</div>
+    <p>We'd love for you to be there as we say "I do!" Your presence will make our wedding day even more special.</p>
+    <p class="ask">Will you accept this invitation?</p>
+    <p>Please respond on or before <strong>October 15, 2026</strong></p>
+    <a href="#rsvp" class="btn">RSVP</a>
+    <div class="countbar">
+      <div class="label">forever<br>starts soon</div>
+      <div class="count">
+        <div class="unit"><div class="num" id="d">--</div><div class="lbl">Days</div></div>
+        <div class="unit"><div class="num" id="h">--</div><div class="lbl">Hours</div></div>
+        <div class="unit"><div class="num" id="m">--</div><div class="lbl">Minutes</div></div>
+        <div class="unit"><div class="num" id="s">--</div><div class="lbl">Seconds</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="reveal" id="gallery">
+  <div class="wrap">
+    <div class="eyebrow">A few of our</div>
+    <div class="script center" style="font-size:clamp(2.4rem,6vw,3.4rem)">favourite moments</div>
+    <div class="rule"></div>
+    <div class="gallery">
+      <div class="ph a"><img src="photos/gallery-1.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 1'))"></div>
+      <div class="ph big"><img src="photos/gallery-2.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 2'))"></div>
+      <div class="ph a"><img src="photos/gallery-3.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 3'))"></div>
+      <div class="ph a"><img src="photos/gallery-4.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 4'))"></div>
+      <div class="ph a"><img src="photos/gallery-5.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 5'))"></div>
+      <div class="ph a"><img src="photos/gallery-6.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 6'))"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story reveal" id="story">
+  <div class="wrap">
+    <div class="eyebrow">How It All <em>Began</em></div>
+    <div class="script">Together, Always</div>
+    <div class="rule"></div>
+    <div class="body-text">
+      <p>Our love story began with a class on Benedictine Spirituality during our MBA at San Beda University. Of all places, a lecture hall was where a connection first sparked — quiet proof that the best things often arrive when we least expect them.</p>
+      <p>Our first real conversation happened over coffee at the Starbucks on Visayas Avenue. One cup turned into many, and what began as classmates grew into a partnership we now get to celebrate. As we stand on the threshold of our wedding day, we can't wait to begin the next chapter, writing our happily ever after together.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECEPTION / DETAILS -->
+<section class="reception reveal" id="reception">
+  <div class="wrap">
+    <div class="eyebrow">The celebration</div>
+    <div class="script">Ceremony &amp; Reception</div>
+    <div class="rule"></div>
+    <div class="recep-grid">
+      <div class="info">
+        <p class="pin">⌖ Ceremony</p>
+        <p class="addr">Our Lady of Peace and Good Voyage</p>
+        <p>Lipa City, Batangas · 12:30 in the afternoon</p>
+        <p class="pin" style="margin-top:22px">⌖ Reception</p>
+        <p class="addr">1022 Lipa</p>
+        <p>Alaminos Rd, Brgy., Lipa City, Batangas</p>
+        <p style="margin-top:6px"><a href="https://maps.google.com/?q=1022+Lipa,+Alaminos+Rd,+Lipa+City,+Batangas" target="_blank" rel="noopener">View on map →</a></p>
+        <p class="pin" style="margin-top:22px">⌖ Dress code</p>
+        <p>Formal — Barong Tagalog for gentlemen, formal dress for ladies</p>
+        <p style="margin-top:14px;font-style:italic;color:var(--muted)">Come for the love, stay for the party!</p>
+      </div>
+      <div class="cakewrap">
+        <div class="ph"><img src="photos/reception.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Reception photo'))"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIFTS -->
+<section class="gifts reveal" id="gifts">
+  <div class="wrap">
+    <div class="script">Gifts</div>
+    <div class="rule"></div>
+    <div class="gift-photos">
+      <div class="ph"><img src="photos/gift-1.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo'))"></div>
+      <div class="ph"><img src="photos/gift-2.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo'))"></div>
+      <div class="ph"><img src="photos/gift-3.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo'))"></div>
+    </div>
+    <div class="body-text center" style="text-align:center">
+      <p>Your presence at our wedding is the most cherished gift we could ever receive. Your love and support mean the world to us, and we're excited to share this special day with you. If you'd like to contribute in some way, you can find our registry and honeymoon fund details below.</p>
+    </div>
+    <div class="gift-btns">
+      <!-- EDIT: replace # with your registry / honeymoon links -->
+      <a href="#" class="btn">Wedding Registry</a>
+      <a href="#" class="btn" style="background:var(--sage-deep)">Honeymoon Fund</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq reveal" id="faq">
+  <div class="wrap">
+    <div class="script">Frequently asked</div>
+    <div class="rule"></div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item">
+        <button class="faq-q">What is the dress code? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Formal attire — Barong Tagalog for the gentlemen, and a formal dress for the ladies. We can't wait to see everyone dressed up.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Will the ceremony be at the church? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes — the ceremony will be held at Our Lady of Peace and Good Voyage in Lipa City, beginning at 12:30 in the afternoon.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Where should I park? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Parking is available at the reception venue, 1022 Lipa. Just let the staff know you're there for the wedding.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is transportation provided? <span class="plus">+</span></button>
+        <div class="faq-a"><p>For guests staying elsewhere, please make your own arrangements such as Grab, taxi, or a local car service between the church and the reception.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I bring a plus one? <span class="plus">+</span></button>
+        <div class="faq-a"><p>If your invitation says "and guest," then absolutely! If not, we'd love to celebrate with just you due to venue limits.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I bring my children? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Unless your children are named on your invitation, we kindly ask that this be an adults-only celebration so everyone can relax and enjoy the evening.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section class="rsvpsec reveal" id="rsvp">
+  <div class="rsvp-wrap">
+    <div class="eyebrow">Kindly respond</div>
+    <div class="script">RSVP</div>
+    <div class="rule"></div>
+    <p class="center">Please reply on or before <strong>October 15, 2026</strong>.</p>
+    <form id="rsvpForm">
+      <label for="name">Full name(s)</label>
+      <input type="text" id="name" name="name" placeholder="Your name(s)" required>
+      <label for="attending">Will you attend?</label>
+      <select id="attending" name="attending" required>
+        <option value="" disabled selected>Please choose…</option>
+        <option value="Joyfully accepts">Joyfully accepts</option>
+        <option value="Regretfully declines">Regretfully declines</option>
+      </select>
+      <label for="guests">Number of guests (including you)</label>
+      <input type="number" id="guests" name="guests" min="1" value="1">
+      <label for="meal">Dietary restrictions / notes (optional)</label>
+      <textarea id="meal" name="meal" rows="3" placeholder="Allergies, dietary needs, song requests…"></textarea>
+      <label for="message">A message for the couple (optional)</label>
+      <textarea id="message" name="message" rows="3" placeholder="Leave us a note"></textarea>
+      <button type="submit" class="btn">Send RSVP</button>
+      <p class="deadline">Your reply opens an email to Mike &amp; Miya — just press send.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="script">Mike &amp; Miya</span>
+  <div class="smallcaps">Forever starts soon</div>
+</footer>
+
+<script>
+  /* ===== EDIT: real wedding date & time =====
+     new Date(YEAR, MONTH(0-11), DAY, HOUR, MIN). Month is 0-indexed (9 = October, 10 = November). */
+  var WEDDING_DATE = new Date(2026, 10, 28, 12, 30); // placeholder: Nov 28, 2026, 12:30 PM
+
+  /* Envelope intro */
+  (function(){
+    var intro=document.getElementById('intro'), env=document.getElementById('env'), body=document.body;
+    function open(){
+      if(env.classList.contains('open'))return;
+      env.classList.add('open');
+      setTimeout(function(){intro.classList.add('gone');body.classList.remove('locked');},1100);
+    }
+    env.addEventListener('click',open);
+    env.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')open();});
+    intro.addEventListener('click',function(e){if(e.target===intro)open();});
+  })();
+
+  /* Countdown */
+  function tick(){
+    var diff=WEDDING_DATE-new Date();
+    var g=function(id){return document.getElementById(id);};
+    if(diff<=0){g('d').textContent=g('h').textContent=g('m').textContent=g('s').textContent='0';return;}
+    var sec=Math.floor(diff/1000);
+    g('d').textContent=Math.floor(sec/86400);
+    g('h').textContent=Math.floor(sec%86400/3600);
+    g('m').textContent=Math.floor(sec%3600/60);
+    g('s').textContent=sec%60;
+  }
+  tick(); setInterval(tick,1000);
+
+  /* Scroll reveal */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  /* Nav background */
+  var nav=document.getElementById('nav'), hero=document.querySelector('.hero');
+  function onScroll(){
+    var past=window.scrollY>hero.offsetHeight-70;
+    nav.classList.toggle('solid',past);
+    nav.classList.toggle('over-hero',!past);
+  }
+  onScroll(); window.addEventListener('scroll',onScroll);
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.parentElement, ans=item.querySelector('.faq-a'), isOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
+      if(!isOpen){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
+    });
+  });
+
+  /* RSVP mailto */
+  document.getElementById('rsvpForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var v=function(id){return document.getElementById(id).value.trim();};
+    var name=v('name'),attending=document.getElementById('attending').value,guests=v('guests'),meal=v('meal'),message=v('message');
+    var subject='Wedding RSVP — '+(name||'Guest');
+    var bodyTxt=['Name: '+name,'Response: '+attending,'Number of guests: '+guests,'Dietary notes: '+(meal||'None'),'Message: '+(message||'None')].join('\n');
+    window.location.href='mailto:michaelvdemesa@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(bodyTxt);
+  });
+</script>
+</body>
+</html>
