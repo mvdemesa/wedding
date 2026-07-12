@@ -227,6 +227,10 @@ const WEDDING_CONFIG = {
         a: "While we absolutely adore your little ones, we have chosen to make this an adults-only celebration. We hope this allows everyone to relax and fully enjoy the festivities. Thank you so much for your understanding and support.",
       },
       {
+        q: "Can I bring my pet?",
+        a: "As much as we love our furry friends, pets are unfortunately not permitted due to venue restrictions and to help preserve the solemnity of our wedding ceremony and celebration.\n\nWe truly appreciate your understanding and cooperation, and we look forward to celebrating this special day with you.",
+      },
+      {
         q: "Contact Details of the Couple",
         a: "For further questions, please feel free to send us a message.\n\nMiya - 09178606492\nMike - 09176253593\n\nYou may also reach us on Facebook Messenger. Heads up though, Miya responds quicker than Mike. :)",
       },
