@@ -97,7 +97,7 @@ const WEDDING_CONFIG = {
       { image: "ARTZ2604.jpg", w: 1067, h: 1600, caption: "" },
       { image: "ARTZ3453.jpg", w: 1067, h: 1600, caption: "" },
       { image: "ARTZ3038.jpg", w: 1067, h: 1600, caption: "" },
-      { image: "ARTZ2939.jpg", w: 1600, h: 1067, caption: "" },
+      { image: "ARTZ3083.jpg", w: 1600, h: 1067, caption: "" },
       { image: "ARTZ2314.jpg", w: 1600, h: 1067, caption: "" },
       { image: "ARTZ3398.jpg", w: 1600, h: 1067, caption: "" },
     ],
