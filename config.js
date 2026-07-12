@@ -166,7 +166,7 @@ const WEDDING_CONFIG = {
             { color: "#C9A24B", name: "Gold" },
             { color: "#A47E36", name: "Antique Gold" },
           ],
-          photo: "dress-sponsors.jpg",
+          photo: "DRESS-~2.JPG",
         },
       },
     ],
