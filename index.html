@@ -87,6 +87,7 @@ h1,h2,h3{font-weight:400;letter-spacing:.01em}
 .bg-layer{position:absolute;inset:0;z-index:0;overflow:hidden}
 .bg-layer .bg-photo{position:absolute;inset:-8% 0;background-size:cover;background-position:center;will-change:transform}
 #bg-hero{background-position:42% 30%}#bg-countdown{background-position:50% 38%}#bg-story{background-position:50% 30%}#bg-details{background-position:48% 52%}#bg-gifts{background-position:50% 28%}#bg-footer{background-position:44% 28%}
+@media (orientation:portrait){#bg-hero{background-position:42% center}#bg-countdown{background-position:50% center}#bg-story{background-position:50% center}#bg-details{background-position:50% center}#bg-gifts{background-position:50% center}#bg-footer{background-position:50% center}}
 .bg-overlay{position:absolute;inset:0;z-index:1}
 
 .ph{position:relative}
@@ -208,7 +209,7 @@ h1,h2,h3{font-weight:400;letter-spacing:.01em}
 @media(prefers-reduced-motion:reduce){.env-float,.strand,.spk,.landing-intro,.landing-names,.landing-subline{animation:none}}
 
 /* ============================================================ HERO ============================================================ */
-#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--burgundy-deep)}
+#hero{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;background:var(--burgundy-deep)}
 #hero .bg-layer{top:clamp(54px,7.5vh,74px)}
 #hero .bg-layer .bg-photo{inset:0 0 -8% 0}
 #hero .bg-overlay{background:linear-gradient(180deg,rgba(58,9,18,.5),rgba(42,6,13,.62))}
@@ -251,7 +252,7 @@ h1,h2,h3{font-weight:400;letter-spacing:.01em}
 /* ============================================================ GALLERY ============================================================ */
 #frames{background:linear-gradient(180deg,#3A0912,#2a060d)}
 /* editorial masonry — never crops, preserves each photo's natural ratio */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin:1.4rem auto 0;max-width:1040px;align-items:start}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin:1.6rem auto 0;max-width:1060px;align-items:start}
 .frame{margin:0;border-radius:22px;overflow:hidden;position:relative;cursor:pointer;background:rgba(246,239,228,.04);box-shadow:0 18px 40px -18px rgba(0,0,0,.55);outline:1px solid transparent;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
 .frame img{display:block;width:100%;height:auto;border-radius:22px}
 .frame:hover{transform:scale(1.02);box-shadow:0 26px 60px -20px rgba(0,0,0,.6),0 0 0 1px rgba(201,162,75,.55),0 0 24px rgba(201,162,75,.35)}
@@ -936,7 +937,7 @@ section[id]{scroll-margin-top:64px}
     const delay=`style="transition-delay:${(i%4)*0.09}s"`;
     if(f.image){
       const k=lbItems.length; lbItems.push({src:f.image,caption:f.caption||""});
-      const dim=(f.w&&f.h)?` width="${f.w}" height="${f.h}"`:"";
+      const dim=(f.w&&f.h)?` width="${f.w}" height="${f.h}" style="aspect-ratio:${f.w}/${f.h}"`:"";
       const alt=esc(f.caption||("Prenup photograph "+(k+1)));
       return `<figure class="frame reveal" ${delay} data-lb-group="gallery" data-lb="${k}" tabindex="0" role="button" aria-label="View photograph ${k+1}"><img src="${esc(f.image)}"${dim} alt="${alt}" loading="lazy" decoding="async"/></figure>`;
     }
