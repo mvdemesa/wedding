@@ -185,15 +185,15 @@ const WEDDING_CONFIG = {
     title: "Celebrating With Your Blessing",
     paragraphs: [
       "Your presence is the greatest gift we could ever ask for.",
-      "If you wish to bless us further, a monetary gift would be sincerely appreciated as we begin this new chapter together. Your generosity will help us create wonderful memories on our honeymoon and in our married life.",
+      "If you wish to bless us further, a monetary gift would be sincerely appreciated as we begin this new chapter together. Your generosity will help us create wonderful memories in our married life.",
       "Most importantly, your love, prayers, and presence are more than enough, and we are truly grateful to celebrate this special day with you.",
     ],
     // Kept low-key inside a dropdown. Add a QR image path (e.g. "qr1.png")
     // and the account number/name; leave "qr" as "" for a placeholder box.
     bankToggle: "View Our Bank Details",
     accounts: [
-      { bank: "Account One", name: "Account name here", number: "Account number here", qr: "" },
-      { bank: "Account Two", name: "Account name here", number: "Account number here", qr: "" },
+      { bank: "BPI", name: "Miyalanni Enna Solis Onquit", number: "1929454851", qr: "account_one.png" },
+      { bank: "MariBank", name: "Miyalanni Enna Onquit", number: "11508446733", qr: "account_two.png" },
     ],
   },
 
