@@ -204,7 +204,7 @@ const WEDDING_CONFIG = {
   rsvp: {
     eyebrow: "Kindly Respond",
     title: "Will You Celebrate With Us?",
-    endpoint: "",   // e.g. "https://formspree.io/f/xxxxxxx"
+    endpoint: "https://script.google.com/macros/s/AKfycby5jdqePp3kNl7BLUW4SlMe1eHYbU9hhe-MdxbpidQ3GtK4sQvEBahmIXFJuvVUx0RdjA/exec",   // e.g. "https://formspree.io/f/xxxxxxx"
     thankYouYes: "Your seat is joyfully reserved. We cannot wait to celebrate this day with you.",
     thankYouNo:  "You will be dearly missed, and you remain in our hearts on our special day.",
   },
