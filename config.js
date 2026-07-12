@@ -5,7 +5,7 @@
    Change the text between the quotes. Do not remove the quotes or commas.
 
    PHOTOS: put your image files in the /images folder, then reference them like
-   "images/hero.jpg". Leave a photo as "" (empty) to use an elegant gradient
+   "hero.jpg". Leave a photo as "" (empty) to use an elegant gradient
    placeholder instead. Recommended: large landscape JPGs, under ~500KB each.
 
    COLORS: hex codes. Change the palette to restyle the whole site at once.
@@ -48,7 +48,7 @@ const WEDDING_CONFIG = {
     prompt: "Tap anywhere to begin our story",
     // Full-screen opening photo (fills the viewport). "" falls back to a burgundy
     // gradient so the text stays readable even without an image.
-    heroImage: "images/ARTZ3236.jpg",
+    heroImage: "ARTZ3236.jpg",
   },
 
   /* ---- Hero / invitation welcome message ---- */
@@ -93,12 +93,12 @@ const WEDDING_CONFIG = {
     title: "Our Love in Frames",
     subtitle: "Every photograph holds a memory, every memory tells our story.",
     frames: [
-      { image: "images/ARTZ2604.jpg", w: 1067, h: 1600, caption: "" },
-      { image: "images/ARTZ3453.jpg", w: 1067, h: 1600, caption: "" },
-      { image: "images/ARTZ2939.jpg", w: 1600, h: 1067, caption: "" },
-      { image: "images/ARTZ3038.jpg", w: 1067, h: 1600, caption: "" },
-      { image: "images/ARTZ2794.jpg", w: 1600, h: 1067, caption: "" },
-      { image: "images/ARTZ3398.jpg", w: 1600, h: 1067, caption: "" },
+      { image: "ARTZ2604.jpg", w: 1067, h: 1600, caption: "" },
+      { image: "ARTZ3453.jpg", w: 1067, h: 1600, caption: "" },
+      { image: "ARTZ2939.jpg", w: 1600, h: 1067, caption: "" },
+      { image: "ARTZ3038.jpg", w: 1067, h: 1600, caption: "" },
+      { image: "ARTZ2794.jpg", w: 1600, h: 1067, caption: "" },
+      { image: "ARTZ3398.jpg", w: 1600, h: 1067, caption: "" },
     ],
   },
 
@@ -131,7 +131,7 @@ const WEDDING_CONFIG = {
 
   /* ---- Dress code ----
      Two cards, each with a "women" and "men" block. Add inspiration photos by
-     setting a "photo" path (e.g. "images/gown-inspo.jpg"); leave "" for a
+     setting a "photo" path (e.g. "gown-inspo.jpg"); leave "" for a
      placeholder box. Swatches are the little colour circles under the palette. */
   dressCode: {
     eyebrow: "A Timeless Palette",
@@ -151,7 +151,7 @@ const WEDDING_CONFIG = {
             { color: "#F0C9CF", name: "Blush" },
             { color: "#E7A6AE", name: "Rose" },
           ],
-          photo: "images/dress-guests.jpg",
+          photo: "dress-guests.jpg",
         },
       },
       {
@@ -166,7 +166,7 @@ const WEDDING_CONFIG = {
             { color: "#C9A24B", name: "Gold" },
             { color: "#A47E36", name: "Antique Gold" },
           ],
-          photo: "images/dress-sponsors.jpg",
+          photo: "dress-sponsors.jpg",
         },
       },
     ],
@@ -175,7 +175,7 @@ const WEDDING_CONFIG = {
       title: "For the Gentlemen",
       attire: "Barong Tagalog",
       note: "Worn with pride.",
-      photo: "images/dress-men.jpg",
+      photo: "dress-men.jpg",
     },
   },
 
@@ -188,7 +188,7 @@ const WEDDING_CONFIG = {
       "If you wish to bless us further, a monetary gift would be sincerely appreciated as we begin this new chapter together. Your generosity will help us create wonderful memories on our honeymoon and in our married life.",
       "Most importantly, your love, prayers, and presence are more than enough, and we are truly grateful to celebrate this special day with you.",
     ],
-    // Kept low-key inside a dropdown. Add a QR image path (e.g. "images/qr1.png")
+    // Kept low-key inside a dropdown. Add a QR image path (e.g. "qr1.png")
     // and the account number/name; leave "qr" as "" for a placeholder box.
     bankToggle: "View Our Bank Details",
     accounts: [
@@ -262,12 +262,12 @@ const WEDDING_CONFIG = {
   /* ---- Section background photos ----
      Reference files in /images, or leave "" for elegant gradient placeholders. */
   backgrounds: {
-    hero:      "images/ARTZ3291.jpg",
-    countdown: "images/ARTZ3140.jpg",
-    story:     "images/C4A28346-AF82-45B5-B49D-A27590C572CC.jpg",
-    details:   "images/ARTZ3083.jpg",
-    gifts:     "images/ARTZ3196.jpg",
-    footer:    "images/ARTZ3400.jpg",
+    hero:      "ARTZ3291.jpg",
+    countdown: "ARTZ3140.jpg",
+    story:     "C4A28346-AF82-45B5-B49D-A27590C572CC.jpg",
+    details:   "ARTZ3083.jpg",
+    gifts:     "ARTZ3196.jpg",
+    footer:    "ARTZ3400.jpg",
   },
 
   /* ---- Theme colors (change these to restyle everything) ---- */
