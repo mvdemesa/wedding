@@ -95,9 +95,9 @@ const WEDDING_CONFIG = {
     frames: [
       { image: "ARTZ2604.jpg", w: 1067, h: 1600, caption: "" },
       { image: "ARTZ3453.jpg", w: 1067, h: 1600, caption: "" },
-      { image: "ARTZ2939.jpg", w: 1600, h: 1067, caption: "" },
       { image: "ARTZ3038.jpg", w: 1067, h: 1600, caption: "" },
-      { image: "ARTZ2794.jpg", w: 1600, h: 1067, caption: "" },
+      { image: "ARTZ2939.jpg", w: 1600, h: 1067, caption: "" },
+      { image: "ARTZ2314.jpg", w: 1600, h: 1067, caption: "" },
       { image: "ARTZ3398.jpg", w: 1600, h: 1067, caption: "" },
     ],
   },
@@ -267,8 +267,8 @@ const WEDDING_CONFIG = {
      Reference files in /images, or leave "" for elegant gradient placeholders. */
   backgrounds: {
     hero:      "ARTZ3291.jpg",
-    countdown: "ARTZ3140.jpg",
-    story:     "ARTZ3236.jpg",
+    countdown: "ARTZ3267.jpg",
+    story:     "ARTZ2744.jpg",
     details:   "ARTZ3083.jpg",
     gifts:     "ARTZ3196.jpg",
     footer:    "ARTZ3400.jpg",
