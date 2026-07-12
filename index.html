@@ -1,447 +1,1304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mike &amp; Miya — The Wedding</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta id="meta-desc" name="description" content="" />
+<meta name="theme-color" content="#5A0F1D" />
+<meta id="og-title" property="og:title" content="" />
+<meta id="og-desc" property="og:description" content="" />
+<meta property="og:type" content="website" />
+<title id="page-title">A Wedding Invitation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+
 <style>
-  :root{
-    --sage:#8f9c77;
-    --sage-deep:#6f7c57;
-    --sage-soft:#aab392;
-    --sage-bg:#9aa87f;       /* FAQ block */
-    --sage-tint:#dfe4d4;
-    --cream:#f4f1e8;
-    --ivory:#fdfcf8;
-    --ink:#4c4940;
-    --muted:#8c8779;
-    --line:#e3ddcf;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'EB Garamond',Georgia,serif;color:var(--ink);background:var(--ivory);line-height:1.85;font-size:17px;overflow-x:hidden}
-  body.locked{overflow:hidden;height:100vh}
-  img{max-width:100%;display:block}
-  a{color:var(--sage-deep)}
+/* ============================================================
+   THEME TOKENS  (overridden at runtime from config.theme)
+   ============================================================ */
+:root{
+  --burgundy:#5A0F1D;
+  --burgundy-deep:#3A0912;
+  --wine:#7A1C2E;
+  --wine-soft:#8f2b3c;
+  --ivory:#F6EFE4;
+  --ivory-warm:#efe4d2;
+  --champagne:#E7CFA0;
+  --gold:#C9A24B;
+  --gold-bright:#E4C778;
+  --gold-antique:#A47E36;
+  --olive:#6B6B3A;
+  --sage:#9BA78B;
+  --ink:#2b1013;
+  --ease:cubic-bezier(.19,1,.22,1);
+  --serif:"Cormorant Garamond",serif;
+  --display:"Bickham Script Pro","Burgues Script","Pinyon Script",cursive;
+  --body:"Cormorant Garamond",serif;
+  --script:"Bickham Script Pro","Burgues Script","Pinyon Script",cursive;
+}
 
-  /* Shared type */
-  .script{font-family:'Pinyon Script',cursive;font-weight:400;color:var(--sage-deep);line-height:1.1}
-  .eyebrow{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;letter-spacing:1px;color:var(--sage-deep);text-align:center}
-  .smallcaps{font-family:'Cormorant Garamond',serif;text-transform:uppercase;letter-spacing:3px;font-size:.78rem;color:var(--sage-deep)}
-  .rule{width:60px;height:1px;background:var(--sage-soft);margin:20px auto}
-  .center{text-align:center}
-  .body-text{max-width:560px;margin:0 auto;text-align:justify;letter-spacing:.3px}
-  .body-text p{margin-bottom:18px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--body);
+  background:var(--burgundy-deep);
+  color:var(--ivory);
+  overflow-x:hidden;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--gold);color:var(--burgundy-deep)}
 
-  /* ===== ENVELOPE INTRO ===== */
-  #intro{position:fixed;inset:0;z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    background:radial-gradient(circle at 50% 35%,#fbfaf4,#e7e3d6);transition:opacity .9s ease,visibility .9s}
-  #intro.gone{opacity:0;visibility:hidden}
-  .env{position:relative;width:300px;height:200px;max-width:78vw;cursor:pointer;perspective:1000px;filter:drop-shadow(0 18px 30px rgba(90,90,70,.22))}
-  .env .pocket{position:absolute;inset:0;background:var(--ivory);border:1px solid var(--line);border-radius:4px;overflow:hidden;z-index:3}
-  .env .pocket::before{content:"";position:absolute;bottom:0;left:0;right:0;height:0;border-style:solid;border-width:0 150px 118px 150px;border-color:transparent transparent #f0ecdf transparent;z-index:4}
-  .env .pocket::after{content:"";position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:100px 150px 0 0;border-color:#f4f0e4 transparent transparent transparent;opacity:.6}
-  .env .card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:78%;height:128%;background:var(--ivory);
-    border:1px solid var(--line);z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;
-    transition:transform 1s cubic-bezier(.5,0,.2,1);box-shadow:0 6px 18px rgba(0,0,0,.08)}
-  .env .card .mono{font-family:'Pinyon Script',cursive;font-size:2.4rem;color:var(--sage-deep)}
-  .env .card .std{font-family:'Cormorant Garamond',serif;letter-spacing:4px;text-transform:uppercase;font-size:.62rem;color:var(--muted);margin-top:4px}
-  .env .flap{position:absolute;top:0;left:0;width:0;height:0;border-style:solid;border-width:100px 150px 0 150px;
-    border-color:#eef0e3 transparent transparent transparent;transform-origin:top;z-index:6;transition:transform .9s ease,z-index .9s}
-  .env.open .flap{transform:rotateX(180deg);z-index:1}
-  .env.open .card{transform:translate(-50%,-185%);z-index:7;box-shadow:0 20px 40px rgba(0,0,0,.18)}
-  #intro .open-hint{margin-top:54px;color:var(--muted);letter-spacing:3px;text-transform:uppercase;font-size:.72rem;font-family:'Cormorant Garamond',serif;animation:pulse 2.4s infinite}
-  @keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--burgundy-deep)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--gold-antique),var(--gold));border-radius:8px}
 
-  /* ===== NAV ===== */
-  nav{position:fixed;top:0;left:0;right:0;z-index:120;display:flex;align-items:center;justify-content:center;gap:8px;
-    padding:13px 10px;flex-wrap:wrap;background:rgba(253,252,248,0);transition:background .4s,box-shadow .4s}
-  nav.solid{background:rgba(253,252,248,.95);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--line)}
-  nav a{text-decoration:none;font-family:'Cormorant Garamond',serif;text-transform:uppercase;letter-spacing:2px;font-size:.72rem;
-    color:var(--ink);padding:7px 16px;border:1px solid transparent;border-radius:30px;transition:.25s}
-  nav.over-hero a{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.35)}
-  nav a:hover{border-color:var(--sage-soft);color:var(--sage-deep)}
-  nav.over-hero a:hover{color:#fff;border-color:rgba(255,255,255,.7)}
-  nav a.rsvp-pill{background:var(--sage);color:#fff;border-radius:30px;text-shadow:none}
-  nav a.rsvp-pill:hover{background:var(--sage-deep);color:#fff;border-color:transparent}
-  @media(max-width:620px){nav a{font-size:.6rem;letter-spacing:1px;padding:5px 10px}}
+body.locked{overflow:hidden;height:100vh}
 
-  /* ===== HERO ===== */
-  .hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:flex-start;justify-content:center;text-align:center;color:#fff;overflow:hidden}
-  .hero-bg{position:absolute;inset:0;background:
-      linear-gradient(180deg,rgba(70,74,58,.30),rgba(70,74,58,.05) 45%,rgba(70,74,58,.35)),
-      url('photos/hero.jpg') center/cover no-repeat,
-      linear-gradient(135deg,#c7cdb7,#9aa382 55%,#7c855f);
-    transform:scale(1.07);animation:slowzoom 16s ease-out forwards}
-  @keyframes slowzoom{to{transform:scale(1)}}
-  .hero-inner{position:relative;z-index:2;margin-top:16vh;padding:0 24px;opacity:0;animation:fadeUp 1.6s ease .2s forwards}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-  .hero .names{font-family:'Pinyon Script',cursive;font-size:clamp(3.6rem,11vw,6.6rem);line-height:.95;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.25)}
-  .hero .sub{margin-top:8px;font-family:'Cormorant Garamond',serif;letter-spacing:5px;text-transform:uppercase;font-size:.95rem}
-  .hero .sub em{font-style:italic;text-transform:none;letter-spacing:1px;font-size:1.05rem}
-  .scroll-cue{position:absolute;bottom:26px;z-index:2;left:0;right:0;font-family:'Cormorant Garamond',serif;letter-spacing:3px;text-transform:uppercase;font-size:.66rem;opacity:.85;animation:bob 2.4s infinite}
-  .scroll-cue::after{content:"";display:block;width:1px;height:30px;background:#fff;margin:8px auto 0;opacity:.7}
-  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+/* ============================================================ REUSABLE ============================================================ */
+.section{position:relative;padding:clamp(4.5rem,10vw,9rem) clamp(1.25rem,5vw,4rem);overflow:hidden}
+.wrap{max-width:1180px;margin:0 auto;position:relative;z-index:3}
+.center{text-align:center}
 
-  /* ===== REVEAL ===== */
-  .reveal{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease}
-  .reveal.in{opacity:1;transform:none}
+.eyebrow{font-family:var(--body);letter-spacing:.42em;text-transform:uppercase;font-size:.72rem;color:var(--gold-bright);margin-bottom:1.1rem;font-weight:500}
+.script{font-family:var(--script);line-height:.95}
+h1,h2,h3{font-weight:400;letter-spacing:.01em}
 
-  section{padding:96px 24px}
-  .wrap{max-width:880px;margin:0 auto}
+.section-title{font-family:var(--display);font-size:clamp(2.1rem,5.2vw,3.6rem);color:var(--ivory);line-height:1.12;margin-bottom:.4rem}
+.section-sub{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2.2vw,1.4rem);color:var(--champagne);font-weight:300;opacity:.9}
 
-  /* ===== INVITED + COUNTDOWN ===== */
-  .invited{text-align:center}
-  .invited .script{font-size:clamp(3rem,8vw,4.4rem);margin-bottom:18px}
-  .invited p{max-width:520px;margin:0 auto 16px}
-  .invited .ask{font-style:italic;font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--sage-deep)}
-  .btn{display:inline-block;cursor:pointer;background:var(--sage);color:#fff;border:none;text-decoration:none;
-    padding:14px 46px;font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:3px;text-transform:uppercase;
-    border-radius:2px;transition:background .25s;margin-top:14px}
-  .btn:hover{background:var(--sage-deep)}
-  .countbar{display:flex;align-items:flex-end;justify-content:center;gap:30px;margin-top:64px;flex-wrap:wrap}
-  .countbar .label{font-family:'Pinyon Script',cursive;font-size:2.6rem;color:var(--sage-deep);line-height:.9;text-align:right}
-  .count{display:flex;gap:22px}
-  .count .num{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:2.4rem;color:var(--ink);line-height:1}
-  .count .lbl{text-transform:uppercase;letter-spacing:2px;font-size:.6rem;color:var(--muted);margin-top:6px;text-align:center}
-  .count .unit{min-width:52px;text-align:center}
+.divider{display:flex;align-items:center;justify-content:center;gap:.9rem;margin:1.6rem auto 2.6rem;max-width:340px}
+.divider .line{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
+.divider .line.r{background:linear-gradient(90deg,var(--gold),transparent)}
+.divider .diamond{width:9px;height:9px;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 12px rgba(201,162,75,.7)}
+.divider .dot{width:5px;height:5px;border-radius:50%;background:var(--gold-bright)}
 
-  /* ===== GALLERY ===== */
-  .gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:12px;margin-top:8px}
-  .gallery .ph{background:linear-gradient(135deg,var(--sage-tint),#cdd3bd);overflow:hidden;
-    display:flex;align-items:center;justify-content:center;color:var(--sage-deep);font-family:'Cormorant Garamond',serif;font-size:.9rem}
-  .gallery .ph img{width:100%;height:100%;object-fit:cover}
-  .gallery .a{grid-column:span 1;grid-row:span 1}
-  .gallery .big{grid-column:span 2;grid-row:span 2}
-  @media(max-width:680px){.gallery{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}.gallery .big{grid-column:span 2}}
+.btn{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--body);letter-spacing:.18em;text-transform:uppercase;font-size:.74rem;font-weight:500;padding:.85rem 1.7rem;border:1px solid var(--gold);color:var(--gold-bright);background:transparent;border-radius:2px;cursor:pointer;position:relative;overflow:hidden;transition:color .5s var(--ease),border-color .5s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(120deg,var(--gold-antique),var(--gold));transform:translateY(101%);transition:transform .55s var(--ease)}
+.btn:hover{color:var(--burgundy-deep);border-color:var(--gold-bright)}
+.btn:hover::before{transform:translateY(0)}
+.btn svg{width:15px;height:15px}
 
-  /* ===== STORY ===== */
-  .story{background:var(--ivory)}
-  .story .script{font-size:clamp(2.6rem,7vw,3.8rem);text-align:center;margin:4px 0 8px}
+.bg-layer{position:absolute;inset:0;z-index:0;overflow:hidden}
+.bg-photo{position:absolute;inset:-8% 0;background-size:cover;background-position:center;will-change:transform}
+.bg-overlay{position:absolute;inset:0;z-index:1}
 
-  /* ===== RECEPTION ===== */
-  .reception{background:var(--cream)}
-  .reception .script{font-size:clamp(2.6rem,7vw,3.8rem);text-align:center}
-  .recep-grid{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;margin-top:30px}
-  .recep-grid .info p{margin-bottom:6px}
-  .recep-grid .pin{font-family:'Cormorant Garamond',serif;letter-spacing:2px;text-transform:uppercase;font-size:.8rem;color:var(--sage-deep);margin-bottom:6px}
-  .recep-grid .addr{font-style:italic;color:var(--ink)}
-  .cakewrap{position:relative;padding:22px 0 0 22px}
-  .cakewrap::before{content:"";position:absolute;top:0;left:0;width:62%;height:88%;background:var(--sage-soft);opacity:.55;z-index:0}
-  .cakewrap .ph{position:relative;z-index:1;aspect-ratio:4/5;background:linear-gradient(135deg,var(--sage-tint),#cdd3bd);
-    display:flex;align-items:center;justify-content:center;color:var(--sage-deep);font-family:'Cormorant Garamond',serif;overflow:hidden}
-  .cakewrap .ph img{width:100%;height:100%;object-fit:cover}
-  @media(max-width:680px){.recep-grid{grid-template-columns:1fr;gap:30px}}
+.ph{position:relative}
+.ph::after{content:attr(data-label);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:var(--body);letter-spacing:.28em;text-transform:uppercase;font-size:.62rem;color:rgba(246,239,228,.30);text-align:center;padding:0 1rem;pointer-events:none}
+.ph.has-photo::after{display:none}
+.grain{position:absolute;inset:0;z-index:2;opacity:.06;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-  /* ===== GIFTS ===== */
-  .gifts{background:var(--ivory);text-align:center}
-  .gifts .script{font-size:clamp(2.6rem,7vw,3.8rem)}
-  .gift-photos{display:flex;justify-content:center;gap:18px;margin:30px 0;flex-wrap:wrap}
-  .gift-photos .ph{width:150px;aspect-ratio:3/4;border:6px solid #fff;box-shadow:0 8px 18px rgba(0,0,0,.08);
-    background:linear-gradient(135deg,var(--sage-tint),#cdd3bd);overflow:hidden;
-    display:flex;align-items:center;justify-content:center;color:var(--sage-deep);font-family:'Cormorant Garamond',serif;font-size:.8rem}
-  .gift-photos .ph:nth-child(2){transform:translateY(-14px)}
-  .gift-photos .ph img{width:100%;height:100%;object-fit:cover}
-  .gifts .body-text{margin-bottom:24px}
-  .gift-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.reveal{opacity:0;transform:translateY(38px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}
 
-  /* ===== FAQ ===== */
-  .faq{background:var(--sage-bg);color:#fff}
-  .faq .script{font-size:clamp(2.6rem,7vw,3.8rem);color:#fff;text-align:center}
-  .faq .rule{background:rgba(255,255,255,.6)}
-  .faq-list{max-width:620px;margin:34px auto 0}
-  .faq-item{background:var(--ivory);margin-bottom:12px;border-radius:2px;overflow:hidden}
-  .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:18px 22px;
-    font-family:'Cormorant Garamond',serif;text-transform:uppercase;letter-spacing:2px;font-size:.85rem;color:var(--sage-deep);
-    display:flex;justify-content:space-between;align-items:center;gap:14px}
-  .faq-q .plus{font-size:1.3rem;transition:transform .3s;color:var(--sage)}
-  .faq-item.open .faq-q .plus{transform:rotate(45deg)}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--ink)}
-  .faq-a p{padding:0 22px 18px;text-align:center}
+.particles{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.particles span{position:absolute;bottom:-10px;border-radius:50%;background:radial-gradient(circle,var(--gold-bright),transparent 70%);opacity:0;animation:float linear infinite}
+@keyframes float{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:.9}90%{opacity:.6}100%{transform:translateY(-115vh) translateX(30px);opacity:0}}
 
-  /* ===== RSVP FORM ===== */
-  .rsvpsec{background:var(--cream)}
-  .rsvpsec .script{font-size:clamp(2.6rem,7vw,3.8rem);text-align:center}
-  .rsvp-wrap{max-width:560px;margin:0 auto}
-  form label{display:block;margin:18px 0 6px;font-size:.95rem;letter-spacing:.5px}
-  form input,form select,form textarea{width:100%;padding:13px 15px;font-family:inherit;font-size:1rem;
-    background:var(--ivory);border:1px solid var(--line);border-radius:2px;color:var(--ink)}
-  form input:focus,form select:focus,form textarea:focus{outline:none;border-color:var(--sage)}
-  form .btn{width:100%}
-  .deadline{text-align:center;color:var(--muted);font-style:italic;margin-top:16px}
+/* ============================================================ PRELOADER ============================================================ */
+#preloader{position:fixed;inset:0;z-index:200;background:var(--burgundy-deep);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;transition:opacity .9s var(--ease),visibility .9s}
+#preloader.hide{opacity:0;visibility:hidden}
+#preloader .monogram{font-family:var(--script);font-size:clamp(4rem,12vw,7rem);color:var(--gold-bright);animation:pulse 2.4s ease-in-out infinite}
+#preloader .pl-line{width:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:plline 2.2s var(--ease) forwards}
+@keyframes plline{to{width:180px}}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+#preloader small{letter-spacing:.4em;text-transform:uppercase;font-size:.62rem;color:var(--champagne);opacity:.7}
 
-  footer{background:var(--sage-bg);color:#fff;text-align:center;padding:64px 24px}
-  footer .script{color:#fff;font-size:3rem;display:block;margin-bottom:4px}
-  footer .smallcaps{color:rgba(255,255,255,.85)}
+/* ============================================================ LANDING / ENVELOPE (cream + hyper-real envelope) ============================================================ */
+#landing{position:fixed;inset:0;z-index:150;display:flex;align-items:center;justify-content:center;padding:4vh 5vw;text-align:center;overflow:hidden;
+  background:radial-gradient(130% 120% at 50% 40%, #f8f2e8 0%, #efe6d6 60%, #e5dbc7 100%);
+  transition:opacity 1.4s var(--ease),visibility 1.4s}
+#landing.dismiss{opacity:0;visibility:hidden;pointer-events:none;transform:scale(1.02)}
+/* soft cream paper texture */
+.paper-grain{position:absolute;inset:0;z-index:0;opacity:.55;pointer-events:none;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 .74 0 0 0 0 .68 0 0 0 0 .58 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E")}
+/* radial daylight from upper centre + soft edge vignette */
+.paper-light{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(70% 55% at 50% 30%, rgba(255,252,244,.75), rgba(255,252,244,0) 60%)}
+.paper-vignette{position:absolute;inset:0;z-index:0;pointer-events:none;box-shadow:inset 0 0 220px 60px rgba(120,96,70,.16)}
+
+/* floating dust particles */
+.dust{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.dust span{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(201,162,75,.9),rgba(201,162,75,0) 70%);opacity:0;animation:dustFloat linear infinite}
+@keyframes dustFloat{0%{transform:translateY(20px) translateX(0);opacity:0}15%{opacity:.8}85%{opacity:.5}100%{transform:translateY(-120px) translateX(24px);opacity:0}}
+
+.landing-scene{position:relative;z-index:3;width:min(660px,96vw);display:flex;flex-direction:column;align-items:center;text-align:center;will-change:transform}
+.landing-intro{font-family:var(--body);color:#53212B;font-size:clamp(.9rem,2.3vw,1.12rem);letter-spacing:.18em;opacity:.95;margin-bottom:.15rem;animation:landIn 1.4s var(--ease) both}
+.landing-names{font-family:var(--script);font-size:clamp(3rem,11vw,5.8rem);line-height:1;position:relative;z-index:4;margin:.15rem 0 -.7rem;
+  color:#53212B;
+  background:linear-gradient(100deg,#53212B 0%,#53212B 43%,#b98a3c 49%,#eccd82 51%,#b98a3c 53%,#53212B 60%,#53212B 100%);
+  background-size:280% 100%;background-position:150% 0;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 1px 1px rgba(83,33,43,.18));
+  animation:landIn 1.6s var(--ease) .1s both, foil 7.5s ease-in-out 2s infinite}
+@keyframes landIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes foil{0%,100%{background-position:150% 0}50%{background-position:-60% 0}}
+
+/* photorealistic hero photo (shown when images/envelope.png is present) */
+.env-photo{display:none;width:100%;height:auto;position:relative;z-index:2;filter:drop-shadow(0 26px 34px rgba(90,15,29,.22))}
+.env-wrap.has-photo .env-vector{display:none}
+.env-wrap.has-photo .env-photo{display:block}
+
+/* envelope wrap */
+.env-wrap{position:relative;width:min(560px,92vw);margin-top:.5rem;cursor:pointer}
+.env-float{position:relative;animation:envFloat 6.5s ease-in-out infinite}
+@keyframes envFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.env-svg{width:100%;height:auto;display:block;position:relative;z-index:2}
+.env-seal{transition:transform .6s var(--ease)}
+.env-seal-mono{font-family:var(--serif);font-size:24px;letter-spacing:2px;fill:#3a0a14;opacity:.72;font-weight:500}
+.env-wrap:hover .env-float{animation-play-state:paused}
+
+/* bouquets */
+.bouquet{position:absolute;z-index:3;height:auto;pointer-events:none;filter:drop-shadow(0 8px 12px rgba(90,15,29,.18))}
+.bq-tl{width:36%;top:-15%;left:-9%}
+.bq-br{width:42%;right:-11%;bottom:-30%}
+.strand{transform-box:fill-box;transform-origin:top center;animation:sway 5s ease-in-out infinite}
+.bq-br .strand{animation-duration:6.5s}
+@keyframes sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+.spk{transform-box:fill-box;transform-origin:center;animation:tw 2.8s ease-in-out infinite}
+.spk:nth-of-type(2){animation-delay:.7s}.spk:nth-of-type(3){animation-delay:1.3s}.spk:nth-of-type(4){animation-delay:1.9s}
+@keyframes tw{0%,100%{opacity:.35;transform:scale(.75)}50%{opacity:1;transform:scale(1.15)}}
+
+/* letter reveal on open */
+.letter{position:absolute;left:50%;top:44%;width:min(320px,74vw);padding:2.2rem 1.5rem;border-radius:6px;background:linear-gradient(180deg,#f9f2e7,#efe3ce);box-shadow:0 30px 70px rgba(90,15,29,.3);display:flex;flex-direction:column;align-items:center;gap:.35rem;opacity:0;pointer-events:none;z-index:6;
+  transform:translate(-50%,-40%) scale(.9);transition:opacity 1s var(--ease) .3s,transform 1.2s var(--ease) .3s}
+.letter .l-mono{font-family:var(--script);font-size:2.8rem;color:var(--burgundy);line-height:1.1}
+.letter .l-line{width:60px;height:1px;background:var(--gold-antique);margin:.2rem 0}
+.letter .l-sub{font-family:var(--serif);font-style:italic;color:var(--wine);font-size:1rem;letter-spacing:.04em}
+
+/* tap hint */
+.tap-hint-text{position:relative;z-index:3;margin-top:1.4rem;font-family:var(--body);color:#5a0f1d;font-size:clamp(1rem,2.5vw,1.25rem);opacity:.95}
+.open-link{font:inherit;color:inherit;background:none;border:none;cursor:pointer;padding:.2rem .3rem;letter-spacing:.01em}
+.open-link .u{border-bottom:1px solid transparent;padding-bottom:2px;transition:border-color .4s,color .4s}
+.open-link:hover .u,.open-link:focus-visible .u{border-color:var(--gold-antique);color:var(--gold-antique)}
+
+/* opened state */
+.env-wrap.open .env-float{opacity:0;transform:scale(.95);animation:none;transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
+.env-wrap.open .bouquet{opacity:0;transition:opacity .8s}
+.env-wrap.open .letter{opacity:1;transform:translate(-50%,-50%) scale(1)}
+
+/* subline under the names */
+.landing-intro:empty{display:none}
+.landing-subline{font-family:var(--body);color:#53212B;font-size:clamp(1.05rem,2.8vw,1.5rem);letter-spacing:.02em;margin-top:.9rem;opacity:.96;animation:landIn 1.7s var(--ease) .2s both}
+
+/* opening-screen PHOTO mode (when landing.heroImage loads) */
+.landing-photo-veil{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.2s var(--ease);
+  background:radial-gradient(92% 82% at 50% 42%, rgba(22,6,11,.10), rgba(22,6,11,.52) 100%)}
+#landing.has-photo{background-size:cover;background-position:center;background-repeat:no-repeat}
+#landing.has-photo .paper-grain{opacity:.12}
+#landing.has-photo .paper-light{opacity:0}
+#landing.has-photo .paper-vignette{box-shadow:inset 0 0 240px 70px rgba(22,6,11,.5)}
+#landing.has-photo .landing-photo-veil{opacity:1}
+#landing.has-photo .env-wrap{display:none}
+#landing.has-photo .landing-subline{color:#f7eee0;text-shadow:0 2px 12px rgba(22,6,11,.6)}
+#landing.has-photo .tap-hint-text{color:#f7eee0;text-shadow:0 2px 12px rgba(22,6,11,.6)}
+#landing.has-photo .open-link:hover .u,#landing.has-photo .open-link:focus-visible .u{color:#f0d79a;border-color:#f0d79a}
+#landing.has-photo .landing-names{
+  background:linear-gradient(100deg,#f6ecd8 0%,#f6ecd8 43%,#e7c877 49%,#fff3d0 51%,#e7c877 53%,#f6ecd8 61%,#f6ecd8 100%);
+  background-size:280% 100%;
+  filter:drop-shadow(0 3px 15px rgba(22,6,11,.6))}
+#landing.has-photo .landing-scene{cursor:pointer}
+
+@media(prefers-reduced-motion:reduce){.env-float,.strand,.spk,.landing-intro,.landing-names,.landing-subline{animation:none}}
+
+/* ============================================================ HERO ============================================================ */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center}
+#hero .bg-overlay{background:linear-gradient(180deg,rgba(58,9,18,.72),rgba(42,6,13,.82))}
+.hero-inner{max-width:820px}
+.hero-inner{max-width:760px}
+.hero-inner .names{font-family:var(--script);font-size:clamp(2.8rem,9vw,5.2rem);color:var(--gold-bright);line-height:1;margin:.1rem 0;text-shadow:0 4px 40px rgba(201,162,75,.3)}
+.hero-inner .amp{display:block;font-size:.6em;color:var(--champagne);opacity:.9}
+.hero-full-name{font-family:var(--serif);font-size:clamp(1rem,3vw,1.35rem);letter-spacing:.16em;text-transform:uppercase;color:var(--ivory);opacity:.9;margin-top:.6rem}
+.hero-meta{margin-top:1.8rem;font-family:var(--serif);font-size:clamp(1.1rem,2.6vw,1.5rem);color:var(--champagne);letter-spacing:.08em}
+.hero-meta strong{color:var(--gold-bright);font-weight:500}
+.welcome{max-width:640px;margin:2.6rem auto 0;font-family:var(--body);font-size:clamp(1.02rem,2.1vw,1.18rem);color:var(--ivory-warm);opacity:.92}
+.welcome p{margin-bottom:1rem}
+.welcome .sign{font-family:var(--script);font-size:2.6rem;color:var(--gold-bright);line-height:1}
+.scroll-ind{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:5;display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--champagne)}
+.scroll-ind small{letter-spacing:.32em;text-transform:uppercase;font-size:.58rem;opacity:.8}
+.scroll-ind .mouse{width:22px;height:36px;border:1px solid var(--gold);border-radius:12px;position:relative}
+.scroll-ind .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:7px;background:var(--gold-bright);border-radius:2px;animation:wheel 1.8s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}80%{opacity:0;transform:translate(-50%,12px)}}
+
+/* ============================================================ COUNTDOWN ============================================================ */
+#countdown .bg-overlay{background:linear-gradient(180deg,rgba(42,6,13,.86),rgba(58,9,18,.8))}
+.count-grid{display:flex;flex-wrap:wrap;gap:clamp(.7rem,2vw,1.4rem);justify-content:center;margin-top:1rem}
+.count-card{min-width:120px;flex:1 1 120px;max-width:170px;padding:1.6rem 1rem;border-radius:10px;background:rgba(246,239,228,.06);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(201,162,75,.4);box-shadow:0 10px 40px rgba(0,0,0,.3),inset 0 0 30px rgba(201,162,75,.05);position:relative;overflow:hidden}
+.count-card::before{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(228,199,120,.18),transparent);animation:shimmer 5s ease-in-out infinite}
+@keyframes shimmer{0%{left:-60%}55%,100%{left:130%}}
+.count-num{font-family:var(--display);font-size:clamp(2.4rem,6vw,3.6rem);color:var(--gold-bright);line-height:1;text-shadow:0 0 24px rgba(201,162,75,.35)}
+.count-label{font-family:var(--body);letter-spacing:.26em;text-transform:uppercase;font-size:.62rem;color:var(--ivory);margin-top:.6rem;opacity:.85}
+.count-done{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--gold-bright)}
+
+/* ============================================================ STORY ============================================================ */
+#story .bg-overlay{background:linear-gradient(180deg,rgba(58,9,18,.9),rgba(42,6,13,.92))}
+.story-body{max-width:720px;margin:0 auto;font-size:clamp(1.02rem,2.1vw,1.16rem);color:var(--ivory-warm);text-align:left}
+.story-body p{margin-bottom:1.15rem;opacity:.94}
+.story-body .drop::first-letter{font-family:var(--display);font-size:3.4em;float:left;line-height:.7;padding:.1em .12em 0 0;color:var(--gold-bright)}
+.milestones{display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:center;margin-top:2.6rem}
+.milestone{flex:1 1 150px;max-width:210px;text-align:center;padding:1.2rem;border:1px solid rgba(201,162,75,.28);border-radius:8px;background:rgba(246,239,228,.04)}
+.milestone .m-date{font-family:var(--display);color:var(--gold-bright);font-size:1.15rem}
+.milestone .m-text{font-size:.9rem;color:var(--ivory);opacity:.85;margin-top:.3rem}
+
+/* ============================================================ GALLERY ============================================================ */
+#frames{background:linear-gradient(180deg,#3A0912,#2a060d)}
+/* editorial masonry — never crops, preserves each photo's natural ratio */
+.gallery{column-count:3;column-gap:22px;margin-top:1.4rem}
+.frame{break-inside:avoid;margin:0 0 22px;border-radius:22px;overflow:hidden;position:relative;cursor:pointer;background:rgba(246,239,228,.04);box-shadow:0 18px 40px -18px rgba(0,0,0,.55);outline:1px solid transparent;transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.frame img{display:block;width:100%;height:auto;border-radius:22px}
+.frame:hover{transform:scale(1.02);box-shadow:0 26px 60px -20px rgba(0,0,0,.6),0 0 0 1px rgba(201,162,75,.55),0 0 24px rgba(201,162,75,.35)}
+.frame:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px}
+.frame.ph-frame .ph{width:100%;background-size:cover;background-position:center;border-radius:22px}
+.tint-a{background:linear-gradient(135deg,#6d1526,#3a0912)}
+.tint-b{background:linear-gradient(135deg,#7a1c2e,#4d0e1b)}
+.tint-c{background:linear-gradient(135deg,#6B6B3A,#3a3a20)}
+.tint-d{background:linear-gradient(135deg,#9BA78B,#4a5240)}
+.tint-e{background:linear-gradient(135deg,#A47E36,#5a4420)}
+.tint-f{background:linear-gradient(135deg,#8f2b3c,#5A0F1D)}
+
+/* ============================================================ DETAILS ============================================================ */
+#details .bg-overlay{background:linear-gradient(180deg,rgba(42,6,13,.9),rgba(58,9,18,.9))}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.6rem;margin-top:1rem}
+.detail-card{background:rgba(246,239,228,.05);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(201,162,75,.35);border-radius:12px;padding:2.4rem 1.8rem;text-align:center;box-shadow:0 20px 50px -20px rgba(0,0,0,.6);position:relative}
+.detail-card .tag{font-family:var(--body);letter-spacing:.3em;text-transform:uppercase;font-size:.66rem;color:var(--gold-bright)}
+.detail-card h3{font-family:var(--display);font-size:1.7rem;color:var(--ivory);margin:.7rem 0 .3rem}
+.detail-card .venue{font-family:var(--serif);font-style:italic;color:var(--champagne);font-size:1.1rem}
+.detail-card .when{margin:.9rem 0;color:var(--ivory-warm);font-size:1.02rem}
+.detail-card .when strong{color:var(--gold-bright);font-weight:500}
+.detail-actions{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;margin-top:1.2rem}
+.detail-actions .btn{padding:.7rem 1.2rem;font-size:.66rem}
+.reception-note{max-width:660px;margin:2.6rem auto 0;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2.2vw,1.28rem);color:var(--ivory-warm);opacity:.95}
+
+/* ============================================================ DRESS ============================================================ */
+#dress{background:linear-gradient(180deg,#2a060d,#3A0912)}
+.dress-note{max-width:660px;margin:0 auto 2.4rem;text-align:center;color:var(--ivory-warm);font-size:1.05rem;opacity:.92}
+.dress-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.6rem}
+.dress-card{border:1px solid rgba(201,162,75,.3);border-radius:12px;padding:2rem;background:rgba(246,239,228,.04)}
+.dress-card h3{font-family:var(--display);font-size:1.5rem;color:var(--gold-bright);text-align:center;margin-bottom:.4rem}
+.dress-card .who-sub{text-align:center;font-family:var(--body);letter-spacing:.24em;text-transform:uppercase;font-size:.62rem;color:var(--champagne);opacity:.8;margin-bottom:1.4rem}
+.dress-row{margin-bottom:1.3rem}
+.dress-row .role{font-family:var(--serif);font-style:italic;color:var(--ivory);font-size:1.15rem;margin-bottom:.35rem}
+.dress-row .desc{color:var(--ivory-warm);opacity:.88;font-size:.98rem}
+.swatches{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+.sw{width:34px;height:34px;border-radius:50%;border:1px solid rgba(246,239,228,.35);box-shadow:0 3px 10px rgba(0,0,0,.35);position:relative}
+.sw span{position:absolute;top:110%;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--champagne);opacity:0;transition:opacity .3s}
+.sw:hover span{opacity:.9}
+
+/* ============================================================ GIFTS ============================================================ */
+#gifts .bg-overlay{background:linear-gradient(180deg,rgba(58,9,18,.9),rgba(42,6,13,.92))}
+.gifts-body{max-width:680px;margin:0 auto;text-align:center;color:var(--ivory-warm);font-size:clamp(1.02rem,2.1vw,1.14rem)}
+.gifts-body p{margin-bottom:1rem;opacity:.94}
+.qr-row{display:flex;gap:1.6rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.qr{width:160px;text-align:center}
+.qr .qr-box{width:160px;height:160px;border-radius:12px;border:1px solid rgba(201,162,75,.4);background:rgba(246,239,228,.06);display:flex;align-items:center;justify-content:center;color:rgba(246,239,228,.35);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;text-align:center;padding:1rem;overflow:hidden}
+.qr .qr-box img{width:100%;height:100%;object-fit:contain}
+.qr .qr-cap{margin-top:.7rem;font-family:var(--serif);font-style:italic;color:var(--champagne);font-size:1.15rem}
+.qr .qr-name{font-family:var(--body);color:var(--ivory-warm);font-size:.9rem;opacity:.9;margin-top:.15rem}
+.qr .qr-num{font-family:var(--body);color:var(--gold-bright);font-size:.95rem;letter-spacing:.04em;margin-top:.1rem}
+.gift-accordion{max-width:560px;margin:1.6rem auto 0;text-align:left}
+.gift-accordion .acc-a .gift-inner{padding:.4rem 1.2rem 1.6rem;text-align:center}
+.gift-accordion .qr-row{margin-top:.4rem}
+
+/* ============================================================ RSVP ============================================================ */
+#rsvp{background:linear-gradient(180deg,#3A0912,#2a060d)}
+.rsvp-form{max-width:560px;margin:1rem auto 0;display:flex;flex-direction:column;gap:1.3rem}
+.field label{display:block;font-family:var(--body);letter-spacing:.16em;text-transform:uppercase;font-size:.66rem;color:var(--gold-bright);margin-bottom:.5rem}
+.field input,.field textarea,.field select{width:100%;padding:.9rem 1rem;background:rgba(246,239,228,.06);border:1px solid rgba(201,162,75,.35);border-radius:6px;color:var(--ivory);font-family:var(--body);font-size:1rem;transition:border-color .4s,box-shadow .4s}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--gold-bright);box-shadow:0 0 0 3px rgba(201,162,75,.18)}
+.field textarea{resize:vertical;min-height:110px}
+.attend-toggle{display:flex;gap:.8rem;flex-wrap:wrap}
+.attend-toggle label{flex:1 1 180px;cursor:pointer;padding:.9rem;border:1px solid rgba(201,162,75,.35);border-radius:6px;text-align:center;color:var(--ivory);letter-spacing:.1em;font-size:.85rem;text-transform:none;transition:.4s;margin:0}
+.attend-toggle input{position:absolute;opacity:0;pointer-events:none}
+.attend-toggle input:checked + span{color:var(--burgundy-deep)}
+.attend-toggle label:has(input:checked){background:linear-gradient(120deg,var(--gold-antique),var(--gold));border-color:var(--gold-bright)}
+.rsvp-form .btn{align-self:center;margin-top:.5rem;padding:1rem 2.6rem}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+.modal{position:fixed;inset:0;z-index:180;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:rgba(20,4,8,.7);backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .6s var(--ease),visibility .6s}
+.modal.show{opacity:1;visibility:visible}
+.modal-box{max-width:440px;text-align:center;padding:3rem 2rem;border-radius:14px;background:linear-gradient(160deg,#5a1120,#3a0912);border:1px solid rgba(201,162,75,.5);box-shadow:0 30px 80px rgba(0,0,0,.6);transform:translateY(24px) scale(.97);transition:transform .6s var(--ease)}
+.modal.show .modal-box{transform:none}
+.modal-box .m-mono{font-family:var(--script);font-size:3.4rem;color:var(--gold-bright);line-height:1}
+.modal-box h3{font-family:var(--display);font-size:1.7rem;color:var(--ivory);margin:.4rem 0 .8rem}
+.modal-box p{color:var(--ivory-warm);opacity:.9;margin-bottom:1.4rem}
+
+/* ============================================================ FAQ ============================================================ */
+#faq{background:linear-gradient(180deg,#2a060d,#3A0912)}
+.accordion{max-width:720px;margin:1rem auto 0}
+.acc-item{border:1px solid rgba(201,162,75,.28);border-radius:8px;margin-bottom:1rem;overflow:hidden;background:rgba(246,239,228,.04)}
+.acc-q{width:100%;text-align:left;background:transparent;border:none;color:var(--ivory);cursor:pointer;padding:1.3rem 1.5rem;font-family:var(--serif);font-size:1.2rem;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.acc-q .plus{color:var(--gold-bright);font-size:1.5rem;transition:transform .4s var(--ease);flex-shrink:0}
+.acc-item.open .plus{transform:rotate(45deg)}
+.acc-a{max-height:0;overflow:hidden;transition:max-height .6s var(--ease)}
+.acc-a p{padding:0 1.5rem 1.4rem;color:var(--ivory-warm);opacity:.9}
+
+/* ============================================================ FOOTER ============================================================ */
+#footer{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center}
+#footer .bg-overlay{background:linear-gradient(180deg,rgba(58,9,18,.72),rgba(42,6,13,.9))}
+.footer-quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--ivory);max-width:620px;line-height:1.4}
+.footer-date{margin-top:1.6rem;font-family:var(--body);letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;color:var(--gold-bright)}
+.footer-names{font-family:var(--script);font-size:clamp(2.8rem,9vw,5rem);color:var(--gold-bright);line-height:1.05;padding:0 .1em;margin:.6rem 0}
+.footer-thanks{color:var(--champagne);font-style:italic;font-family:var(--serif);font-size:1.15rem;opacity:.9}
+.double-happiness{position:absolute;left:clamp(14px,3vw,34px);bottom:clamp(12px,2.4vh,26px);z-index:5;font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;font-size:clamp(20px,3vw,30px);line-height:1;color:var(--gold-bright);opacity:.6;pointer-events:none;text-shadow:0 1px 6px rgba(0,0,0,.35)}
+
+#music-toggle{position:fixed;bottom:20px;right:20px;z-index:120;width:48px;height:48px;border-radius:50%;background:rgba(58,9,18,.7);border:1px solid var(--gold);color:var(--gold-bright);display:none;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(8px);transition:transform .4s,box-shadow .4s}
+#music-toggle.visible{display:flex}
+#music-toggle:hover{transform:scale(1.08);box-shadow:0 0 20px rgba(201,162,75,.4)}
+#music-toggle .bars{display:flex;gap:2px;align-items:flex-end;height:16px}
+#music-toggle .bars i{width:2.5px;background:var(--gold-bright);height:100%;animation:eq .9s ease-in-out infinite;border-radius:2px}
+#music-toggle .bars i:nth-child(2){animation-delay:.2s}
+#music-toggle .bars i:nth-child(3){animation-delay:.4s}
+#music-toggle .bars i:nth-child(4){animation-delay:.1s}
+#music-toggle.paused .bars i{animation-play-state:paused;height:40%}
+@keyframes eq{0%,100%{height:30%}50%{height:100%}}
+
+/* ============================================================ DRESS (revised: centered cards + inspiration placeholders) ============================================================ */
+.dress-card{text-align:center}
+.who-block{margin:0 auto 2rem;max-width:360px}
+.who-block:last-child{margin-bottom:0}
+.who-title{font-family:var(--serif);font-style:italic;color:var(--ivory);font-size:1.3rem;margin-bottom:.15rem}
+.who-attire{font-family:var(--body);color:var(--ivory-warm);opacity:.9;font-size:.95rem}
+.colors-label{margin-top:1rem;font-family:var(--body);letter-spacing:.24em;text-transform:uppercase;font-size:.6rem;color:var(--gold-bright)}
+.palette-names{font-family:var(--serif);font-style:italic;color:var(--champagne);font-size:1.05rem;margin-top:.15rem}
+.dress-card .swatches{justify-content:center;margin-top:.7rem}
+.insp-photo{width:100%;max-width:330px;aspect-ratio:4/3;margin:1.1rem auto 0;border-radius:12px;border:1px dashed rgba(201,162,75,.4);background:rgba(246,239,228,.05);display:flex;align-items:center;justify-content:center;color:rgba(246,239,228,.32);font-family:var(--body);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase}
+/* real photo: fit fully (never crop), clickable, elegant hover */
+.insp-photo.has-photo{aspect-ratio:auto;border:none;background:none;padding:0;overflow:hidden;cursor:pointer;outline:1px solid transparent;border-radius:12px;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.insp-photo.has-photo img{display:block;width:100%;height:auto;max-height:640px;object-fit:contain;border-radius:12px}
+.insp-photo.has-photo:hover{transform:scale(1.02);box-shadow:0 0 0 1px rgba(201,162,75,.55),0 0 22px rgba(201,162,75,.32)}
+.insp-photo.has-photo:focus-visible{outline:2px solid var(--gold-bright);outline-offset:3px}
+.dress-men-card{max-width:440px;margin:1.6rem auto 0}
+.men-note{font-family:var(--serif);font-style:italic;color:var(--champagne);font-size:1.05rem;margin-top:.25rem}
+
+/* ============================================================ ENTOURAGE ============================================================ */
+#entourage{background:linear-gradient(180deg,#3A0912,#2a060d)}
+.ent-groups{margin-top:1rem}
+.ent-group{margin:0 auto;max-width:940px;padding:2.4rem 0 .4rem}
+.ent-group-title{font-family:var(--display);font-size:clamp(1.5rem,3.6vw,2.15rem);color:var(--gold-bright);margin-bottom:.4rem;letter-spacing:.02em}
+.ent-group-msg{max-width:620px;margin:.4rem auto 1.4rem;font-family:var(--body);color:var(--ivory-warm);opacity:.88;font-size:.98rem}
+.ent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.4rem 1rem;max-width:900px;margin:1.4rem auto 0}
+.ent-role{padding:.6rem}
+.ent-role .role-title{font-family:var(--serif);font-style:italic;color:var(--champagne);font-size:1.22rem}
+.ent-role .role-names{font-family:var(--body);color:var(--ivory);opacity:.9;margin-top:.35rem;font-size:.95rem;line-height:1.6}
+.ent-role .role-names.ph-names{opacity:.45;font-style:italic}
+.ent-flourish{display:flex;align-items:center;justify-content:center;gap:.8rem;margin:2.4rem auto;max-width:280px;color:var(--gold)}
+.ent-flourish .line{height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
+.ent-flourish .line.r{background:linear-gradient(90deg,var(--gold),transparent)}
+.ent-flourish svg{width:26px;height:26px;opacity:.85;flex-shrink:0}
+
+/* ============================================================ FONT ROLE OVERRIDES (legibility) ============================================================ */
+/* Headings & names use the script (var --display / --script); keep numbers and
+   long venue names in Cormorant so they stay easy to read. */
+.count-num,.milestone .m-date,.detail-card h3{font-family:var(--serif)}
+.section-title{line-height:1.3;padding-bottom:.06em}
+.hero-inner .names,.footer-names{line-height:1.15}
+.acc-q{font-family:var(--serif)} /* accordion questions/group titles readable */
+
+/* ============================================================ TOP NAV ============================================================ */
+#topnav{position:fixed;top:0;left:0;right:0;z-index:130;display:flex;align-items:center;justify-content:space-between;padding:.65rem clamp(1rem,4vw,2.6rem);background:rgba(42,6,13,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,75,.22)}
+#topnav .nav-brand{font-family:var(--script);font-size:1.9rem;color:var(--gold-bright);line-height:1}
+#topnav .nav-links{display:flex;gap:1.5rem;align-items:center}
+#topnav .nav-links a{font-family:var(--body);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory);opacity:.82;transition:color .3s,opacity .3s}
+#topnav .nav-links a:hover{color:var(--gold-bright);opacity:1}
+#nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px}
+#nav-toggle span{display:block;width:24px;height:2px;background:var(--gold-bright);border-radius:2px;transition:transform .3s var(--ease),opacity .3s}
+#nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#nav-toggle.open span:nth-child(2){opacity:0}
+#nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* offset anchor scrolling so sections aren't hidden behind the fixed nav */
+section[id]{scroll-margin-top:64px}
+
+/* ============================================================ HERO PHOTO FRAME ============================================================ */
+.hero-frame{position:absolute;inset:clamp(14px,3vw,34px);z-index:2;border:1px solid rgba(201,162,75,.55);pointer-events:none}
+.hero-frame::after{content:"";position:absolute;inset:6px;border:1px solid rgba(201,162,75,.22)}
+#invite{background:linear-gradient(180deg,#2a060d,#3A0912)}
+#invite .welcome{margin-top:.5rem}
+
+/* ============================================================ ENTOURAGE ACCORDION ============================================================ */
+.ent-accordion{max-width:720px;margin:1rem auto 0;text-align:left}
+.ent-accordion .acc-a .ent-inner{padding:.2rem 1.5rem 1.5rem;text-align:center}
+.ent-accordion .ent-group-msg{max-width:600px;margin:.2rem auto 1rem;font-family:var(--body);color:var(--ivory-warm);opacity:.88;font-size:.95rem}
+.ent-accordion .ent-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.2rem .8rem;margin-top:.4rem}
+
+/* ============================================================ LIGHTBOX ============================================================ */
+.lightbox{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;background:rgba(18,5,9,.93);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s}
+.lightbox.show{opacity:1;visibility:visible}
+.lb-stage{max-width:94vw;max-height:84vh;display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none}
+.lb-img{max-width:94vw;max-height:84vh;width:auto;height:auto;object-fit:contain;border-radius:8px;box-shadow:0 30px 90px rgba(0,0,0,.6);transform:translate(0,0) scale(1);transition:transform .35s var(--ease);will-change:transform;cursor:zoom-in;user-select:none;-webkit-user-drag:none}
+.lb-img.zoomed{cursor:grab}
+.lb-img.panning{transition:none;cursor:grabbing}
+.lightbox.show .lb-img{animation:lbIn .5s var(--ease)}
+@keyframes lbIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.lb-close{position:fixed;top:16px;right:22px;z-index:2;background:none;border:none;color:#f4ead6;font-size:2.6rem;line-height:1;cursor:pointer;opacity:.8;transition:opacity .3s,transform .3s}
+.lb-close:hover{opacity:1;transform:scale(1.08)}
+.lb-nav{position:fixed;top:50%;transform:translateY(-50%);z-index:2;width:54px;height:54px;border-radius:50%;background:rgba(0,0,0,.28);border:1px solid rgba(201,162,75,.4);color:#f4ead6;font-family:var(--body);font-size:1.9rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.85;transition:background .3s,opacity .3s}
+.lb-nav:hover{background:rgba(201,162,75,.32);opacity:1}
+.lb-prev{left:18px}.lb-next{right:18px}
+.lb-caption{position:fixed;left:0;right:0;bottom:46px;z-index:2;text-align:center;font-family:var(--serif);font-style:italic;color:var(--ivory-warm);font-size:1rem;opacity:.85;padding:0 1.2rem;pointer-events:none}
+.lb-caption:empty{display:none}
+.lb-counter{position:fixed;left:0;right:0;bottom:18px;z-index:2;text-align:center;font-family:var(--serif);color:var(--champagne);font-size:1.05rem;letter-spacing:.14em}
+@media(max-width:560px){.lb-nav{width:44px;height:44px;font-size:1.5rem}.lb-prev{left:8px}.lb-next{right:8px}.lb-close{top:10px;right:14px}}
+@media(prefers-reduced-motion:reduce){.lightbox,.lb-img{transition:none}.lightbox.show .lb-img{animation:none}}
+
+/* ============================================================ CINEMATIC LANDING ============================================================ */
+#landing{position:fixed;inset:0;z-index:150;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:0;cursor:pointer;
+  background:linear-gradient(160deg,#3a0912,#2a060d);transition:opacity 1.3s var(--ease),visibility 1.3s}
+#landing:focus{outline:none}
+#landing:focus-visible{outline:2px solid var(--gold-bright);outline-offset:-8px}
+#landing.dismiss{opacity:0;visibility:hidden;pointer-events:none}
+
+/* background photo — Ken Burns */
+.cine-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transform:scale(1.02);filter:saturate(1.08) contrast(1.03) brightness(1.02) sepia(.05);transition:opacity 1.6s var(--ease);animation:kenburns 30s ease-in-out infinite alternate}
+#landing.has-photo .cine-bg{opacity:1}
+@keyframes kenburns{0%{transform:scale(1.02)}100%{transform:scale(1.05) translateY(-1%)}}
+
+/* warm grade, burgundy gradient, ambient bloom */
+.cine-grade{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(80% 60% at 50% 38%, rgba(255,190,120,.10), transparent 70%);mix-blend-mode:soft-light}
+.cine-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg, rgba(58,9,18,.30) 0%, rgba(90,15,29,.14) 45%, rgba(42,6,13,.58) 100%);transition:opacity 1.2s var(--ease)}
+.cine-bloom{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(28% 24% at 50% 44%, rgba(255,214,150,.26), transparent 60%);mix-blend-mode:screen;animation:bloom 7s ease-in-out infinite}
+@keyframes bloom{0%,100%{opacity:.55}50%{opacity:1}}
+
+/* film grain */
+.grain-overlay{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.06;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+
+/* golden diagonal sweep on click */
+.cine-sweep{position:absolute;top:-60%;left:0;width:60%;height:220%;z-index:3;pointer-events:none;opacity:0;transform:rotate(18deg) translateX(-60%);background:linear-gradient(90deg,transparent,rgba(255,236,190,.55) 50%,transparent)}
+#landing.opening .cine-sweep{animation:sweep 1.5s ease-in-out forwards}
+@keyframes sweep{0%{opacity:0;transform:rotate(18deg) translateX(-60%)}30%{opacity:1}100%{opacity:0;transform:rotate(18deg) translateX(260%)}}
+
+.landing-scene{position:relative;z-index:4;width:min(920px,92vw);display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 4vw}
+
+/* hide the old envelope/cream elements if still in the DOM */
+#landing .env-wrap,#landing .tap-hint-text,#landing .paper-grain,#landing .paper-light,#landing .paper-vignette,#landing .landing-photo-veil{display:none!important}
+
+/* names */
+.cine-names{display:flex;flex-direction:column;align-items:center;gap:.05rem;line-height:1.02;animation:cineUp 1.2s var(--ease) .2s both}
+.cine-names .cn-line{font-family:var(--script);font-size:clamp(2.4rem,7.5vw,4.8rem);
+  background:linear-gradient(100deg,#e9d3a1 0%,#e9d3a1 42%,#fff1cb 50%,#c9a24b 56%,#e9d3a1 66%,#e9d3a1 100%);background-size:280% 100%;background-position:150% 0;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#e7cfa0;
+  filter:drop-shadow(0 2px 12px rgba(20,6,10,.5));animation:foil 8s ease-in-out 1.4s infinite}
+.cine-names .cn-amp{font-family:var(--script);font-size:clamp(3.2rem,9.5vw,6rem);line-height:.7;margin:.05rem 0;color:#efdcac;-webkit-text-fill-color:#efdcac;filter:drop-shadow(0 2px 14px rgba(20,6,10,.55))}
+@keyframes cineUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+
+.cine-oneliner{font-family:var(--serif);color:#f6efe1;font-size:clamp(1.05rem,2.6vw,1.5rem);letter-spacing:.06em;margin-top:clamp(1.4rem,4vh,2.6rem);opacity:0;text-shadow:0 2px 12px rgba(20,6,10,.5);animation:cineFade 1.4s var(--ease) 1.1s forwards}
+@keyframes cineFade{from{opacity:0;transform:translateY(10px)}to{opacity:.96;transform:none}}
+
+.cine-prompt{position:absolute;bottom:clamp(26px,6vh,54px);left:0;right:0;z-index:4;display:flex;flex-direction:column;align-items:center;gap:.7rem;font-family:var(--body);color:rgba(246,239,225,.7);font-size:.8rem;letter-spacing:.04em;opacity:0;animation:cineFade 1.4s var(--ease) 2s forwards}
+.cine-chevron{width:15px;height:15px;border-right:1.5px solid rgba(246,239,225,.7);border-bottom:1.5px solid rgba(246,239,225,.7);transform:rotate(45deg);animation:chevron 1.8s ease-in-out infinite}
+@keyframes chevron{0%,100%{transform:rotate(45deg) translate(0,0);opacity:.5}50%{transform:rotate(45deg) translate(3px,3px);opacity:1}}
+
+/* click: dissolve text, fade overlay, zoom in */
+#landing.opening .cine-names,#landing.opening .cine-oneliner{opacity:0;transform:translateY(-12px);transition:opacity .8s var(--ease),transform 1s var(--ease)}
+#landing.opening .cine-prompt{opacity:0;transition:opacity .4s var(--ease)}
+#landing.opening .cine-overlay{opacity:.2}
+#landing.opening .cine-bg{transform:scale(1.1);transition:transform 1.7s var(--ease)}
+
+@media(prefers-reduced-motion:reduce){
+  .cine-bg,.cine-bloom,.cine-names .cn-line,.cine-chevron{animation:none}
+  .cine-names,.cine-oneliner,.cine-prompt{animation-duration:.001ms}
+  .cine-bg{opacity:1;transform:none}
+}
+
+/* ============================================================ RESPONSIVE ============================================================ */
+@media(max-width:900px){ .gallery{column-count:2} }
+@media(max-width:820px){
+  #nav-toggle{display:flex}
+  #topnav .nav-links{position:fixed;top:53px;left:0;right:0;flex-direction:column;gap:0;background:rgba(30,4,10,.98);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);max-height:0;overflow:hidden;transition:max-height .5s var(--ease);border-bottom:1px solid rgba(201,162,75,.2)}
+  #topnav .nav-links.open{max-height:82vh}
+  #topnav .nav-links a{padding:1.05rem;width:100%;text-align:center;border-top:1px solid rgba(201,162,75,.12);font-size:.78rem}
+}
+@media(max-width:520px){
+  .count-card{min-width:0;flex:1 1 40%;padding:1.1rem .5rem}
+  .env-wrap{width:96vw}
+  .bq-tl{top:-11%;left:-6%}
+  .bq-br{bottom:-24%;right:-8%}
+  .gallery{column-count:1}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none}
+}
 </style>
 </head>
 <body class="locked">
 
-<!-- ENVELOPE INTRO -->
-<div id="intro">
-  <div class="env" id="env" role="button" tabindex="0" aria-label="Open invitation">
-    <div class="pocket"></div>
-    <div class="card">
-      <div class="mono">M &amp; M</div>
-      <div class="std">The Wedding</div>
-    </div>
-    <div class="flap"></div>
+<!-- TOP NAVIGATION -->
+<nav id="topnav" aria-label="Section navigation">
+  <a href="#hero" class="nav-brand" aria-label="Back to top">M &amp; M</a>
+  <button id="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="nav-links" id="nav-links">
+    <a href="#story">Story</a>
+    <a href="#frames">Gallery</a>
+    <a href="#details">Details</a>
+    <a href="#dress">Attire</a>
+    <a href="#rsvp">RSVP</a>
+    <a href="#faq">FAQ</a>
+    <a href="#gifts">Gifts</a>
   </div>
-  <div class="open-hint">Tap to open your invitation</div>
-</div>
-
-<!-- NAV -->
-<nav id="nav" class="over-hero">
-  <a href="#invited">Invitation</a>
-  <a href="#story">Story</a>
-  <a href="#reception">Details</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#gifts">Gifts</a>
-  <a href="#faq">FAQ</a>
-  <a href="#rsvp" class="rsvp-pill">RSVP</a>
 </nav>
 
-<!-- HERO -->
-<header class="hero" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-inner">
-    <div class="names">Mike &amp; Miya</div>
-    <div class="sub"><em>the</em> WEDDING</div>
-  </div>
-  <div class="scroll-cue">Scroll</div>
-</header>
+<!-- PRELOADER -->
+<div id="preloader" aria-hidden="true">
+  <div class="monogram" id="pl-monogram">M &amp; M</div>
+  <div class="pl-line"></div>
+  <small>A love letter is being written</small>
+</div>
 
-<!-- INVITED + COUNTDOWN -->
-<section class="invited reveal" id="invited">
-  <div class="wrap">
-    <div class="script">You are invited</div>
-    <p>We'd love for you to be there as we say "I do!" Your presence will make our wedding day even more special.</p>
-    <p class="ask">Will you accept this invitation?</p>
-    <p>Please respond on or before <strong>October 15, 2026</strong></p>
-    <a href="#rsvp" class="btn">RSVP</a>
-    <div class="countbar">
-      <div class="label">forever<br>starts soon</div>
-      <div class="count">
-        <div class="unit"><div class="num" id="d">--</div><div class="lbl">Days</div></div>
-        <div class="unit"><div class="num" id="h">--</div><div class="lbl">Hours</div></div>
-        <div class="unit"><div class="num" id="m">--</div><div class="lbl">Minutes</div></div>
-        <div class="unit"><div class="num" id="s">--</div><div class="lbl">Seconds</div></div>
+<!-- LANDING (cinematic sunset opening) -->
+<section id="landing" role="button" tabindex="0" aria-label="Tap anywhere to begin our story">
+  <div class="cine-bg" id="cine-bg" aria-hidden="true"></div>
+  <div class="cine-grade" aria-hidden="true"></div>
+  <div class="cine-overlay" aria-hidden="true"></div>
+  <div class="cine-bloom" aria-hidden="true"></div>
+  <div class="dust" id="dust" aria-hidden="true"></div>
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <div class="cine-sweep" aria-hidden="true"></div>
+
+  <div class="landing-scene" id="paper-parallax">
+    <h1 class="cine-names foil" id="landing-names" aria-label="Michael Angelo & Miyalanni Enna">
+      <span class="cn-line" id="cine-name1"></span>
+      <span class="cn-amp" aria-hidden="true">&amp;</span>
+      <span class="cn-line" id="cine-name2"></span>
+    </h1>
+    <p class="cine-oneliner" id="cine-oneliner"></p>
+    <p class="cine-prompt" id="cine-prompt"><span id="cine-prompt-text"></span><span class="cine-chevron" aria-hidden="true"></span></p>
+
+    <div class="env-wrap" id="envelope" role="button" tabindex="0" aria-label="Open the invitation">
+      <div class="env-float">
+        <img class="env-photo" id="hero-photo" alt="Handcrafted burgundy wedding envelope with calla lilies, orchids and lace" loading="lazy" />
+        <div class="env-vector">
+        <!-- ENVELOPE -->
+        <svg class="env-svg" viewBox="0 0 620 440" role="img" aria-label="Burgundy wedding envelope">
+          <defs>
+            <linearGradient id="envBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6c1627"/><stop offset="1" stop-color="#490e1a"/></linearGradient>
+            <linearGradient id="envFlap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#711a2d"/><stop offset="1" stop-color="#57121f"/></linearGradient>
+            <radialGradient id="sealWax" cx="42%" cy="34%" r="72%"><stop offset="0" stop-color="#8c2436"/><stop offset="1" stop-color="#440d18"/></radialGradient>
+            <filter id="envShadow" x="-25%" y="-25%" width="150%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#5a0f1d" flood-opacity="0.26"/></filter>
+          </defs>
+          <rect x="40" y="82" width="540" height="296" rx="12" fill="url(#envBody)" filter="url(#envShadow)"/>
+          <path d="M40 378 L310 214 L580 378 Z" fill="#3d0b15" opacity=".38"/>
+          <path d="M40 82 L310 214 L40 378 Z" fill="#000" opacity=".08"/>
+          <path d="M580 82 L310 214 L580 378 Z" fill="#000" opacity=".08"/>
+          <path d="M40 82 L580 82 L310 258 Z" fill="url(#envFlap)"/>
+          <!-- lace ruffle along the flap's two diagonal edges -->
+          <g class="lace" fill="#7e2033">
+            <g transform="translate(40,82) rotate(33.69)">
+              <path d="M0 -16 H312 V0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 V-16 Z"/>
+              <line x1="8" y1="-8" x2="304" y2="-8" stroke="#f0e3d0" stroke-width="2.4" stroke-dasharray="0.5 12" stroke-linecap="round" opacity=".32"/>
+            </g>
+            <g transform="translate(580,82) rotate(146.31)">
+              <path d="M0 -16 H312 V0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 a13 13 0 0 1 -26 0 V-16 Z"/>
+              <line x1="8" y1="-8" x2="304" y2="-8" stroke="#f0e3d0" stroke-width="2.4" stroke-dasharray="0.5 12" stroke-linecap="round" opacity=".32"/>
+            </g>
+          </g>
+          <!-- oval wax seal -->
+          <g class="env-seal" id="seal" transform="translate(310,256)" style="cursor:pointer">
+            <ellipse rx="50" ry="37" fill="url(#sealWax)"/>
+            <ellipse rx="42" ry="30" fill="none" stroke="#380a14" stroke-width="1.3" opacity=".5"/>
+            <path d="M0 -20 C-8 -17 -10 -6 -3 -2 C-6 -9 0 -15 8 -16 C4 -19 3 -20 0 -20 Z" fill="#7a2033" opacity=".8"/>
+            <text y="16" text-anchor="middle" id="seal-mono" class="env-seal-mono">M &amp; M</text>
+          </g>
+        </svg>
+
+        <!-- BOUQUET · top-left -->
+        <svg class="bouquet bq-tl" viewBox="0 0 220 280" aria-hidden="true">
+          <defs>
+            <linearGradient id="callaA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#efe7d6"/></linearGradient>
+            <g id="callaTL"><path d="M22 6 C4 12 0 46 18 58 C11 37 24 20 43 18 C36 10 30 6 22 6 Z" fill="url(#callaA)" stroke="#e4dac6" stroke-width="1"/><path d="M22 15 C24 30 22 45 16 55" fill="none" stroke="#ecd18a" stroke-width="4" stroke-linecap="round"/></g>
+            <g id="leafTL"><path d="M0 0 C-9 22 -6 50 8 64 C17 44 12 16 0 0 Z" fill="#b8c6a4"/></g>
+          </defs>
+          <use href="#leafTL" transform="translate(60,150) rotate(24)"/>
+          <use href="#leafTL" transform="translate(34,120) rotate(-16) scale(.9)"/>
+          <use href="#callaTL" transform="translate(74,44) rotate(-16)"/>
+          <use href="#callaTL" transform="translate(40,74) rotate(-42) scale(.92)"/>
+          <use href="#callaTL" transform="translate(100,86) rotate(8) scale(.86)"/>
+          <path class="strand" d="M70 128 q6 40 0 92" fill="none" stroke="#f2ebdd" stroke-width="7" stroke-dasharray="0.5 9" stroke-linecap="round"/>
+          <path class="strand" d="M96 140 q8 34 2 78" fill="none" stroke="#f2ebdd" stroke-width="6" stroke-dasharray="0.5 9" stroke-linecap="round"/>
+          <path class="spk" d="M150 60 l2 8 8 2 -8 2 -2 8 -2 -8 -8 -2 8 -2 z" fill="#f7e9c4"/>
+          <path class="spk" d="M126 120 l1.5 6 6 1.5 -6 1.5 -1.5 6 -1.5 -6 -6 -1.5 6 -1.5 z" fill="#f7e9c4"/>
+          <path class="spk" d="M52 96 l1.5 6 6 1.5 -6 1.5 -1.5 6 -1.5 -6 -6 -1.5 6 -1.5 z" fill="#fff6df"/>
+        </svg>
+
+        <!-- BOUQUET · bottom-right (larger, long hanging pearls) -->
+        <svg class="bouquet bq-br" viewBox="0 0 260 380" aria-hidden="true">
+          <defs>
+            <linearGradient id="callaB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#efe7d6"/></linearGradient>
+            <g id="callaBR"><path d="M22 6 C4 12 0 46 18 58 C11 37 24 20 43 18 C36 10 30 6 22 6 Z" fill="url(#callaB)" stroke="#e4dac6" stroke-width="1"/><path d="M22 15 C24 30 22 45 16 55" fill="none" stroke="#ecd18a" stroke-width="4" stroke-linecap="round"/></g>
+            <g id="leafBR"><path d="M0 0 C-9 22 -6 50 8 64 C17 44 12 16 0 0 Z" fill="#b8c6a4"/></g>
+          </defs>
+          <use href="#leafBR" transform="translate(120,150) rotate(-18)"/>
+          <use href="#leafBR" transform="translate(150,130) rotate(14) scale(.95)"/>
+          <use href="#callaBR" transform="translate(92,60) rotate(-8)"/>
+          <use href="#callaBR" transform="translate(130,44) rotate(12) scale(.95)"/>
+          <use href="#callaBR" transform="translate(150,80) rotate(30) scale(.88)"/>
+          <!-- white ribbon wrap over stems -->
+          <rect x="118" y="150" width="34" height="20" rx="4" fill="#f6f0e6" stroke="#e3d8c4" stroke-width="1"/>
+          <!-- long hanging pearl strands -->
+          <path class="strand" d="M126 168 q10 70 2 170" fill="none" stroke="#f2ebdd" stroke-width="7" stroke-dasharray="0.5 9" stroke-linecap="round"/>
+          <path class="strand" d="M138 168 q14 80 6 190" fill="none" stroke="#efe7d6" stroke-width="7" stroke-dasharray="0.5 9" stroke-linecap="round"/>
+          <path class="strand" d="M150 168 q6 60 -2 150" fill="none" stroke="#f2ebdd" stroke-width="6" stroke-dasharray="0.5 9" stroke-linecap="round"/>
+          <path class="spk" d="M180 70 l2 8 8 2 -8 2 -2 8 -2 -8 -8 -2 8 -2 z" fill="#f7e9c4"/>
+          <path class="spk" d="M96 100 l1.5 6 6 1.5 -6 1.5 -1.5 6 -1.5 -6 -6 -1.5 6 -1.5 z" fill="#fff6df"/>
+          <path class="spk" d="M168 210 l1.5 6 6 1.5 -6 1.5 -1.5 6 -1.5 -6 -6 -1.5 6 -1.5 z" fill="#f7e9c4"/>
+          <path class="spk" d="M112 250 l1.5 6 6 1.5 -6 1.5 -1.5 6 -1.5 -6 -6 -1.5 6 -1.5 z" fill="#fff6df"/>
+        </svg>
+        </div><!-- /.env-vector -->
+      </div>
+
+      <div class="letter" aria-hidden="true">
+        <div class="l-mono" id="letter-mono"></div>
+        <div class="l-line"></div>
+        <div class="l-sub" id="letter-sub"></div>
       </div>
     </div>
+
+    <p class="tap-hint-text"><button class="open-link" id="open-link" type="button" aria-label="Open the invitation"><span class="u">Tap the invitation to begin our forever.</span></button></p>
   </div>
 </section>
 
-<!-- GALLERY -->
-<section class="reveal" id="gallery">
+<!-- HERO -->
+<section id="hero" class="section" aria-label="Wedding invitation">
+  <div class="bg-layer"><div class="bg-photo ph tint-a" id="bg-hero" data-parallax data-label="Prenup photograph"></div><div class="grain"></div></div>
+  <div class="bg-overlay"></div>
+  <div class="hero-frame" aria-hidden="true"></div>
+  <div class="particles" data-particles="16"></div>
+  <div class="wrap hero-inner center">
+    <p class="eyebrow reveal" id="hero-eyebrow"></p>
+    <h1 class="names reveal d1"><span id="hero-first"></span><span class="amp">&amp;</span><span id="hero-second"></span></h1>
+    <div class="divider reveal d2"><span class="line"></span><span class="dot"></span><span class="diamond"></span><span class="dot"></span><span class="line r"></span></div>
+    <p class="hero-full-name reveal d2" id="hero-fullnames"></p>
+    <p class="hero-meta reveal d3" id="hero-meta"></p>
+  </div>
+  <div class="scroll-ind"><small>Scroll to begin</small><span class="mouse"></span></div>
+</section>
+
+<!-- INVITATION NOTE -->
+<section id="invite" class="section center" aria-label="A note from the couple">
   <div class="wrap">
-    <div class="eyebrow">A few of our</div>
-    <div class="script center" style="font-size:clamp(2.4rem,6vw,3.4rem)">favourite moments</div>
-    <div class="rule"></div>
-    <div class="gallery">
-      <div class="ph a"><img src="photos/gallery-1.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 1'))"></div>
-      <div class="ph big"><img src="photos/gallery-2.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 2'))"></div>
-      <div class="ph a"><img src="photos/gallery-3.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 3'))"></div>
-      <div class="ph a"><img src="photos/gallery-4.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 4'))"></div>
-      <div class="ph a"><img src="photos/gallery-5.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 5'))"></div>
-      <div class="ph a"><img src="photos/gallery-6.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo 6'))"></div>
+    <div class="divider reveal"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
+    <div class="welcome reveal d1" id="hero-welcome"></div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section id="countdown" class="section center" aria-label="Countdown to the wedding">
+  <div class="bg-layer"><div class="bg-photo ph tint-f" id="bg-countdown" data-parallax data-label="Prenup photograph"></div><div class="grain"></div></div>
+  <div class="bg-overlay"></div>
+  <div class="particles" data-particles="12"></div>
+  <div class="wrap">
+    <p class="eyebrow reveal">Counting Every Moment</p>
+    <h2 class="section-title reveal d1">Until We Say I Do</h2>
+    <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
+    <div class="count-grid reveal d2" id="countGrid">
+      <div class="count-card"><div class="count-num" id="cd-days">--</div><div class="count-label">Days</div></div>
+      <div class="count-card"><div class="count-num" id="cd-hours">--</div><div class="count-label">Hours</div></div>
+      <div class="count-card"><div class="count-num" id="cd-min">--</div><div class="count-label">Minutes</div></div>
+      <div class="count-card"><div class="count-num" id="cd-sec">--</div><div class="count-label">Seconds</div></div>
     </div>
   </div>
 </section>
 
 <!-- STORY -->
-<section class="story reveal" id="story">
-  <div class="wrap">
-    <div class="eyebrow">How It All <em>Began</em></div>
-    <div class="script">Together, Always</div>
-    <div class="rule"></div>
-    <div class="body-text">
-      <p>Our love story began with a class on Benedictine Spirituality during our MBA at San Beda University. Of all places, a lecture hall was where a connection first sparked — quiet proof that the best things often arrive when we least expect them.</p>
-      <p>Our first real conversation happened over coffee at the Starbucks on Visayas Avenue. One cup turned into many, and what began as classmates grew into a partnership we now get to celebrate. As we stand on the threshold of our wedding day, we can't wait to begin the next chapter, writing our happily ever after together.</p>
-    </div>
+<section id="story" class="section" aria-label="Our love story">
+  <div class="bg-layer"><div class="bg-photo ph tint-b" id="bg-story" data-parallax data-label="Prenup photograph"></div><div class="grain"></div></div>
+  <div class="bg-overlay"></div>
+  <div class="wrap center">
+    <p class="eyebrow reveal" id="story-eyebrow"></p>
+    <h2 class="section-title reveal d1" id="story-title"></h2>
+    <p class="section-sub reveal d1" id="story-subtitle"></p>
+    <div class="divider reveal d1"><span class="line"></span><span class="dot"></span><span class="diamond"></span><span class="dot"></span><span class="line r"></span></div>
+    <div class="story-body reveal d2" id="story-body"></div>
+    <div class="milestones reveal d3" id="story-milestones"></div>
   </div>
 </section>
 
-<!-- RECEPTION / DETAILS -->
-<section class="reception reveal" id="reception">
+<!-- GALLERY -->
+<section id="frames" class="section center" aria-label="Photo gallery">
   <div class="wrap">
-    <div class="eyebrow">The celebration</div>
-    <div class="script">Ceremony &amp; Reception</div>
-    <div class="rule"></div>
-    <div class="recep-grid">
-      <div class="info">
-        <p class="pin">⌖ Ceremony</p>
-        <p class="addr">Our Lady of Peace and Good Voyage</p>
-        <p>Lipa City, Batangas · 12:30 in the afternoon</p>
-        <p class="pin" style="margin-top:22px">⌖ Reception</p>
-        <p class="addr">1022 Lipa</p>
-        <p>Alaminos Rd, Brgy., Lipa City, Batangas</p>
-        <p style="margin-top:6px"><a href="https://maps.google.com/?q=1022+Lipa,+Alaminos+Rd,+Lipa+City,+Batangas" target="_blank" rel="noopener">View on map →</a></p>
-        <p class="pin" style="margin-top:22px">⌖ Dress code</p>
-        <p>Formal — Barong Tagalog for gentlemen, formal dress for ladies</p>
-        <p style="margin-top:14px;font-style:italic;color:var(--muted)">Come for the love, stay for the party!</p>
-      </div>
-      <div class="cakewrap">
-        <div class="ph"><img src="photos/reception.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Reception photo'))"></div>
-      </div>
-    </div>
+    <p class="eyebrow reveal" id="gallery-eyebrow"></p>
+    <h2 class="section-title reveal d1" id="gallery-title"></h2>
+    <p class="section-sub reveal d1" id="gallery-subtitle"></p>
+    <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
+    <div class="gallery" id="gallery-grid"></div>
   </div>
 </section>
 
-<!-- GIFTS -->
-<section class="gifts reveal" id="gifts">
+<!-- DETAILS -->
+<section id="details" class="section center" aria-label="Wedding details">
+  <div class="bg-layer"><div class="bg-photo ph tint-c" id="bg-details" data-parallax data-label="Prenup photograph"></div><div class="grain"></div></div>
+  <div class="bg-overlay"></div>
   <div class="wrap">
-    <div class="script">Gifts</div>
-    <div class="rule"></div>
-    <div class="gift-photos">
-      <div class="ph"><img src="photos/gift-1.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo'))"></div>
-      <div class="ph"><img src="photos/gift-2.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo'))"></div>
-      <div class="ph"><img src="photos/gift-3.jpg" alt="" onerror="this.replaceWith(document.createTextNode('Photo'))"></div>
-    </div>
-    <div class="body-text center" style="text-align:center">
-      <p>Your presence at our wedding is the most cherished gift we could ever receive. Your love and support mean the world to us, and we're excited to share this special day with you. If you'd like to contribute in some way, you can find our registry and honeymoon fund details below.</p>
-    </div>
-    <div class="gift-btns">
-      <!-- EDIT: replace # with your registry / honeymoon links -->
-      <a href="#" class="btn">Wedding Registry</a>
-      <a href="#" class="btn" style="background:var(--sage-deep)">Honeymoon Fund</a>
-    </div>
+    <p class="eyebrow reveal" id="details-eyebrow"></p>
+    <h2 class="section-title reveal d1" id="details-title"></h2>
+    <div class="divider reveal d1"><span class="line"></span><span class="dot"></span><span class="diamond"></span><span class="dot"></span><span class="line r"></span></div>
+    <div class="cards" id="details-cards"></div>
+    <p class="reception-note reveal d3" id="details-note"></p>
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="faq reveal" id="faq">
+<!-- DRESS -->
+<section id="dress" class="section center" aria-label="Dress code">
   <div class="wrap">
-    <div class="script">Frequently asked</div>
-    <div class="rule"></div>
-    <div class="faq-list" id="faqList">
-      <div class="faq-item">
-        <button class="faq-q">What is the dress code? <span class="plus">+</span></button>
-        <div class="faq-a"><p>Formal attire — Barong Tagalog for the gentlemen, and a formal dress for the ladies. We can't wait to see everyone dressed up.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Will the ceremony be at the church? <span class="plus">+</span></button>
-        <div class="faq-a"><p>Yes — the ceremony will be held at Our Lady of Peace and Good Voyage in Lipa City, beginning at 12:30 in the afternoon.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Where should I park? <span class="plus">+</span></button>
-        <div class="faq-a"><p>Parking is available at the reception venue, 1022 Lipa. Just let the staff know you're there for the wedding.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Is transportation provided? <span class="plus">+</span></button>
-        <div class="faq-a"><p>For guests staying elsewhere, please make your own arrangements such as Grab, taxi, or a local car service between the church and the reception.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Can I bring a plus one? <span class="plus">+</span></button>
-        <div class="faq-a"><p>If your invitation says "and guest," then absolutely! If not, we'd love to celebrate with just you due to venue limits.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Can I bring my children? <span class="plus">+</span></button>
-        <div class="faq-a"><p>Unless your children are named on your invitation, we kindly ask that this be an adults-only celebration so everyone can relax and enjoy the evening.</p></div>
-      </div>
-    </div>
+    <p class="eyebrow reveal" id="dress-eyebrow"></p>
+    <h2 class="section-title reveal d1" id="dress-title"></h2>
+    <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
+    <p class="dress-note reveal d1" id="dress-note"></p>
+    <div class="dress-cards" id="dress-cards"></div>
+    <div id="dress-men"></div>
   </div>
 </section>
 
 <!-- RSVP -->
-<section class="rsvpsec reveal" id="rsvp">
-  <div class="rsvp-wrap">
-    <div class="eyebrow">Kindly respond</div>
-    <div class="script">RSVP</div>
-    <div class="rule"></div>
-    <p class="center">Please reply on or before <strong>October 15, 2026</strong>.</p>
-    <form id="rsvpForm">
-      <label for="name">Full name(s)</label>
-      <input type="text" id="name" name="name" placeholder="Your name(s)" required>
-      <label for="attending">Will you attend?</label>
-      <select id="attending" name="attending" required>
-        <option value="" disabled selected>Please choose…</option>
-        <option value="Joyfully accepts">Joyfully accepts</option>
-        <option value="Regretfully declines">Regretfully declines</option>
-      </select>
-      <label for="guests">Number of guests (including you)</label>
-      <input type="number" id="guests" name="guests" min="1" value="1">
-      <label for="meal">Dietary restrictions / notes (optional)</label>
-      <textarea id="meal" name="meal" rows="3" placeholder="Allergies, dietary needs, song requests…"></textarea>
-      <label for="message">A message for the couple (optional)</label>
-      <textarea id="message" name="message" rows="3" placeholder="Leave us a note"></textarea>
-      <button type="submit" class="btn">Send RSVP</button>
-      <p class="deadline">Your reply opens an email to Mike &amp; Miya — just press send.</p>
+<section id="rsvp" class="section center" aria-label="RSVP">
+  <div class="wrap">
+    <p class="eyebrow reveal" id="rsvp-eyebrow"></p>
+    <h2 class="section-title reveal d1" id="rsvp-title"></h2>
+    <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
+    <form class="rsvp-form reveal d2" id="rsvpForm" novalidate>
+      <div class="field"><label for="fullName">Full Name</label><input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="Your full name" /></div>
+      <div class="field"><label>Will You Attend?</label>
+        <div class="attend-toggle">
+          <label><input type="radio" name="attend" value="yes" required /><span>Joyfully, Yes</span></label>
+          <label><input type="radio" name="attend" value="no" /><span>Regretfully, No</span></label>
+        </div>
+      </div>
+      <div class="field"><label for="diet">Dietary Restrictions</label><input type="text" id="diet" name="diet" placeholder="Allergies or preferences (optional)" /></div>
+      <div class="field"><label for="message">A Message for the Couple</label><textarea id="message" name="message" placeholder="Share your wishes (optional)"></textarea></div>
+      <button type="submit" class="btn">Send My RSVP</button>
     </form>
   </div>
 </section>
 
-<footer>
-  <span class="script">Mike &amp; Miya</span>
-  <div class="smallcaps">Forever starts soon</div>
-</footer>
+<!-- FAQ -->
+<section id="faq" class="section center" aria-label="Frequently asked questions">
+  <div class="wrap">
+    <p class="eyebrow reveal" id="faq-eyebrow"></p>
+    <h2 class="section-title reveal d1" id="faq-title"></h2>
+    <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
+    <div class="accordion reveal d2" id="faq-accordion"></div>
+  </div>
+</section>
+
+<!-- GIFTS (placed last, kept low-key) -->
+<section id="gifts" class="section center" aria-label="Gifts">
+  <div class="bg-layer"><div class="bg-photo ph tint-e" id="bg-gifts" data-parallax data-label="Prenup photograph"></div><div class="grain"></div></div>
+  <div class="bg-overlay"></div>
+  <div class="particles" data-particles="10"></div>
+  <div class="wrap">
+    <p class="eyebrow reveal" id="gifts-eyebrow"></p>
+    <h2 class="section-title reveal d1" id="gifts-title"></h2>
+    <div class="divider reveal d1"><span class="line"></span><span class="dot"></span><span class="diamond"></span><span class="dot"></span><span class="line r"></span></div>
+    <div class="gifts-body reveal d2" id="gifts-body"></div>
+    <div class="reveal d3" id="gifts-qr"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section id="footer" class="section" aria-label="Closing">
+  <div class="bg-layer"><div class="bg-photo ph tint-f" id="bg-footer" data-parallax data-label="Sunset prenup photograph"></div><div class="grain"></div></div>
+  <div class="bg-overlay"></div>
+  <div class="particles" data-particles="14"></div>
+  <div class="wrap center">
+    <p class="footer-quote reveal" id="footer-quote"></p>
+    <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
+    <p class="footer-date reveal d1" id="footer-date"></p>
+    <h2 class="footer-names reveal d2" id="footer-names"></h2>
+    <p class="footer-thanks reveal d2" id="footer-thanks"></p>
+  </div>
+  <span class="double-happiness" title="Double Happiness" aria-label="Double happiness">&#22301;</span>
+</section>
+
+<!-- THANK YOU MODAL -->
+<div class="modal" id="thankModal" role="dialog" aria-modal="true" aria-labelledby="thankTitle">
+  <div class="modal-box">
+    <div class="m-mono" id="thank-mono">M &amp; M</div>
+    <h3 id="thankTitle">Thank You</h3>
+    <p id="thankMsg"></p>
+    <button class="btn" id="closeModal">With Love, Close</button>
+  </div>
+</div>
+
+<!-- MUSIC TOGGLE -->
+<button id="music-toggle" class="paused" aria-label="Toggle background music" title="Background music">
+  <span class="bars"><i></i><i></i><i></i><i></i></span>
+</button>
+
+<!-- Hidden YouTube audio player (only used if music.youtubeId is set) -->
+<div id="yt-player" aria-hidden="true" style="position:fixed;left:-9999px;bottom:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none"></div>
+
+<!-- LIGHTBOX (luxury photo viewer) -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-close" id="lb-close" type="button" aria-label="Close viewer">&times;</button>
+  <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Previous photo">&#8249;</button>
+  <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Next photo">&#8250;</button>
+  <div class="lb-stage" id="lb-stage">
+    <img class="lb-img" id="lb-img" alt="" draggable="false" />
+  </div>
+  <div class="lb-caption" id="lb-caption"></div>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<!-- ============ CONFIG (edit config.js to make it yours) ============ -->
+<script src="config.js"></script>
+
+<!-- Vendor animation libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <script>
-  /* ===== EDIT: real wedding date & time =====
-     new Date(YEAR, MONTH(0-11), DAY, HOUR, MIN). Month is 0-indexed (9 = October, 10 = November). */
-  var WEDDING_DATE = new Date(2026, 10, 28, 12, 30); // placeholder: Nov 28, 2026, 12:30 PM
+/* ============================================================
+   RENDER FROM CONFIG
+   All couple-specific content is injected here from WEDDING_CONFIG.
+   ============================================================ */
+(function(){
+  const C = (window.WEDDING_CONFIG) || {};
+  const $ = id => document.getElementById(id);
+  const nl2br = s => (s||"").replace(/\n/g,"<br/>");
+  const setText = (id,val) => { const el=$(id); if(el && val!=null) el.textContent=val; };
+  const setHTML = (id,val) => { const el=$(id); if(el && val!=null) el.innerHTML=val; };
+  const esc = s => String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
-  /* Envelope intro */
+  /* ---- Theme colors ---- */
+  if(C.theme){
+    const r=document.documentElement.style;
+    const map={burgundy:"--burgundy",burgundyDeep:"--burgundy-deep",wine:"--wine",ivory:"--ivory",
+      ivoryWarm:"--ivory-warm",champagne:"--champagne",gold:"--gold",goldBright:"--gold-bright",
+      goldAntique:"--gold-antique",olive:"--olive",sage:"--sage"};
+    Object.keys(map).forEach(k=>{ if(C.theme[k]) r.setProperty(map[k],C.theme[k]); });
+    if(C.theme.burgundy){ const m=document.querySelector('meta[name="theme-color"]'); if(m) m.content=C.theme.burgundy; }
+  }
+
+  /* ---- Meta / title ---- */
+  if(C.site){
+    setText("page-title",C.site.title);
+    const md=$("meta-desc"); if(md)md.content=C.site.description||"";
+    const ot=$("og-title"); if(ot)ot.content=C.site.title||"";
+    const od=$("og-desc"); if(od)od.content=C.site.description||"";
+  }
+
+  /* ---- Couple / monograms ---- */
+  const cp=C.couple||{};
+  setText("pl-monogram",cp.monogram);
+  setText("letter-mono",cp.monogram);
+  setText("thank-mono",cp.monogram);
+  setText("seal-mono",cp.initials);
+  setText("hero-first",cp.heroFirst);
+  setText("hero-second",cp.heroSecond);
+  setHTML("hero-fullnames",nl2br(esc(cp.fullNames)));
+
+  /* ---- Landing (cinematic opening) ---- */
+  const ld=C.landing||{};
+  setText("cine-name1",ld.nameLine1);
+  setText("cine-name2",ld.nameLine2);
+  setText("cine-oneliner",ld.oneLiner);
+  setText("cine-prompt-text",ld.prompt);
+  /* full-screen opening photo with a graceful burgundy-gradient fallback */
   (function(){
-    var intro=document.getElementById('intro'), env=document.getElementById('env'), body=document.body;
-    function open(){
-      if(env.classList.contains('open'))return;
-      env.classList.add('open');
-      setTimeout(function(){intro.classList.add('gone');body.classList.remove('locked');},1100);
+    const bg=document.getElementById("cine-bg"), landing=document.getElementById("landing");
+    if(bg && ld.heroImage){
+      const probe=new Image();
+      probe.addEventListener("load",()=>{ bg.style.backgroundImage=`url('${ld.heroImage}')`; if(landing) landing.classList.add("has-photo"); });
+      probe.src=ld.heroImage;
     }
-    env.addEventListener('click',open);
-    env.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' ')open();});
-    intro.addEventListener('click',function(e){if(e.target===intro)open();});
   })();
 
-  /* Countdown */
-  function tick(){
-    var diff=WEDDING_DATE-new Date();
-    var g=function(id){return document.getElementById(id);};
-    if(diff<=0){g('d').textContent=g('h').textContent=g('m').textContent=g('s').textContent='0';return;}
-    var sec=Math.floor(diff/1000);
-    g('d').textContent=Math.floor(sec/86400);
-    g('h').textContent=Math.floor(sec%86400/3600);
-    g('m').textContent=Math.floor(sec%3600/60);
-    g('s').textContent=sec%60;
+  /* ---- Hero ---- */
+  const ev=C.event||{}, he=C.hero||{};
+  setText("hero-eyebrow",he.eyebrow);
+  setHTML("hero-meta",`<strong>${esc(ev.dateLong)}</strong><br/>${esc(ev.timeText)} &nbsp;·&nbsp; ${esc(ev.location)}`);
+  let welcomeHTML=(he.welcome||[]).map(p=>`<p>${esc(p)}</p>`).join("");
+  welcomeHTML+=`<p class="sign">${nl2br(esc(cp.signature))}</p>`;
+  setHTML("hero-welcome",welcomeHTML);
+
+  /* ---- Story ---- */
+  const st=C.story||{};
+  setText("story-eyebrow",st.eyebrow);
+  setText("story-title",st.title);
+  setText("story-subtitle",st.subtitle);
+  setHTML("story-body",(st.paragraphs||[]).map((p,i)=>`<p${i===0?' class="drop"':''}>${esc(p)}</p>`).join(""));
+  setHTML("story-milestones",(st.milestones||[]).map(m=>`<div class="milestone"><div class="m-date">${esc(m.date)}</div><div class="m-text">${esc(m.text)}</div></div>`).join(""));
+
+  /* ---- Gallery (editorial masonry, no cropping) ---- */
+  const gal=C.gallery||{};
+  setText("gallery-eyebrow",gal.eyebrow);
+  setText("gallery-title",gal.title);
+  setText("gallery-subtitle",gal.subtitle);
+  const lbItems=[];
+  setHTML("gallery-grid",(gal.frames||[]).map((f,i)=>{
+    const delay=`style="transition-delay:${(i%4)*0.09}s"`;
+    if(f.image){
+      const k=lbItems.length; lbItems.push({src:f.image,caption:f.caption||""});
+      const dim=(f.w&&f.h)?` width="${f.w}" height="${f.h}"`:"";
+      const alt=esc(f.caption||("Prenup photograph "+(k+1)));
+      return `<figure class="frame reveal" ${delay} data-lb-group="gallery" data-lb="${k}" tabindex="0" role="button" aria-label="View photograph ${k+1}"><img src="${esc(f.image)}"${dim} alt="${alt}" loading="lazy" decoding="async"/></figure>`;
+    }
+    const ar=(f.w&&f.h)?`${f.w}/${f.h}`:"3/4";
+    return `<figure class="frame ph-frame reveal" ${delay}><div class="ph ${esc(f.tint||'tint-a')}" style="aspect-ratio:${ar}" data-label="${esc(f.label||'Photo')}"></div></figure>`;
+  }).join(""));
+  window.__LB_GROUPS = window.__LB_GROUPS || {}; window.__LB_GROUPS.gallery = lbItems;
+
+  /* ---- Details ---- */
+  const dt=C.details||{};
+  setText("details-eyebrow",dt.eyebrow);
+  setText("details-title",dt.title);
+  setText("details-note",dt.note);
+  const mapSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-6.2 7-11a7 7 0 10-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+  const fbSvg='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h2.7l.4-3H13V9c0-.9.3-1.5 1.6-1.5H16V4.9c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4V11H7v3h2.6v8H13z"/></svg>';
+  function cardHTML(d,delay){
+    if(!d) return "";
+    let actions=`<a class="btn" href="${esc(d.mapUrl)}" target="_blank" rel="noopener">${mapSvg}Directions</a>`;
+    if(d.facebookUrl) actions+=`<a class="btn" href="${esc(d.facebookUrl)}" target="_blank" rel="noopener">${fbSvg}${esc(d.facebookLabel||"Facebook")}</a>`;
+    return `<div class="detail-card reveal ${delay}"><p class="tag">${esc(d.tag)}</p><h3>${esc(d.name)}</h3><p class="venue">${esc(d.venue)}</p><p class="when"><strong>${esc(d.when)}</strong><br/>${esc(d.when2||"")}</p><div class="detail-actions">${actions}</div></div>`;
   }
-  tick(); setInterval(tick,1000);
+  setHTML("details-cards",cardHTML(dt.ceremony,"d2")+cardHTML(dt.reception,"d3"));
 
-  /* Scroll reveal */
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-  },{threshold:.14});
-  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
-
-  /* Nav background */
-  var nav=document.getElementById('nav'), hero=document.querySelector('.hero');
-  function onScroll(){
-    var past=window.scrollY>hero.offsetHeight-70;
-    nav.classList.toggle('solid',past);
-    nav.classList.toggle('over-hero',!past);
+  /* ---- Dress code ---- */
+  const dc=C.dressCode||{};
+  setText("dress-eyebrow",dc.eyebrow);
+  setText("dress-title",dc.title);
+  setText("dress-note",dc.note);
+  const dressItems=[];
+  function inspPhoto(photo,label,caption){
+    if(photo){
+      const k=dressItems.length; dressItems.push({src:photo,caption:caption||""});
+      return `<figure class="insp-photo has-photo" data-lb-group="dress" data-lb="${k}" tabindex="0" role="button" aria-label="View ${esc(label)}"><img src="${esc(photo)}" alt="${esc(caption||label)}" loading="lazy" decoding="async"/></figure>`;
+    }
+    return `<figure class="insp-photo">${esc(label)}</figure>`;
   }
-  onScroll(); window.addEventListener('scroll',onScroll);
+  function dressBlock(who,label){
+    if(!who) return "";
+    let h=`<div class="who-block"><div class="who-title">${esc(label)}</div><div class="who-attire">${esc(who.attire||"")}</div>`;
+    if(who.palettes && who.palettes.length){
+      h+=`<div class="colors-label">${esc(who.colorsLabel||"Preferred Colors")}</div>`;
+      h+=`<div class="palette-names">${who.palettes.map(esc).join(" &nbsp;&middot;&nbsp; ")}</div>`;
+    }
+    if(who.swatches && who.swatches.length){
+      h+=`<div class="swatches">${who.swatches.map(s=>`<span class="sw" style="background:${esc(s.color)}"><span>${esc(s.name)}</span></span>`).join("")}</div>`;
+    }
+    h+=inspPhoto(who.photo,label+" Attire Inspiration",who.photoCaption);
+    return h+`</div>`;
+  }
+  setHTML("dress-cards",(dc.cards||[]).map((card,i)=>{
+    return `<div class="dress-card reveal d${i+2}"><h3>${esc(card.title)}</h3>${dressBlock(card.women,"Women")}</div>`;
+  }).join(""));
+  if(dc.men){
+    const mNote=dc.men.note?`<div class="men-note">${esc(dc.men.note)}</div>`:"";
+    setHTML("dress-men",`<div class="dress-card dress-men-card reveal d3"><h3>${esc(dc.men.title||"For the Gentlemen")}</h3><div class="who-block"><div class="who-attire">${esc(dc.men.attire||"")}</div>${mNote}${inspPhoto(dc.men.photo,"Barong Attire Inspiration",dc.men.photoCaption)}</div></div>`);
+  }
+  window.__LB_GROUPS = window.__LB_GROUPS || {}; window.__LB_GROUPS.dress = dressItems;
 
-  /* FAQ accordion */
-  document.querySelectorAll('.faq-q').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      var item=btn.parentElement, ans=item.querySelector('.faq-a'), isOpen=item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(function(o){o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
-      if(!isOpen){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
+  /* ---- Gifts ---- */
+  const gf=C.gifts||{};
+  setText("gifts-eyebrow",gf.eyebrow);
+  setText("gifts-title",gf.title);
+  setHTML("gifts-body",(gf.paragraphs||[]).map(p=>`<p>${esc(p)}</p>`).join(""));
+  const gAccounts=gf.accounts||[];
+  if(gAccounts.length){
+    const cards=gAccounts.map(a=>{
+      const box=a.qr?`<div class="qr-box"><img src="${esc(a.qr)}" alt="${esc(a.bank)} QR code"/></div>`:`<div class="qr-box">QR Code<br/>Placeholder</div>`;
+      const nm=a.name?`<div class="qr-name">${esc(a.name)}</div>`:"";
+      const num=a.number?`<div class="qr-num">${esc(a.number)}</div>`:"";
+      return `<div class="qr">${box}<div class="qr-cap">${esc(a.bank)}</div>${nm}${num}</div>`;
+    }).join("");
+    setHTML("gifts-qr",`<div class="accordion gift-accordion"><div class="acc-item"><button class="acc-q" aria-expanded="false">${esc(gf.bankToggle||"View Our Bank Details")}<span class="plus">+</span></button><div class="acc-a"><div class="gift-inner"><div class="qr-row">${cards}</div></div></div></div></div>`);
+  }
+
+  /* ---- RSVP ---- */
+  const rs=C.rsvp||{};
+  setText("rsvp-eyebrow",rs.eyebrow);
+  setText("rsvp-title",rs.title);
+
+  /* ---- FAQ ---- */
+  const fq=C.faq||{};
+  setText("faq-eyebrow",fq.eyebrow);
+  setText("faq-title",fq.title);
+  setHTML("faq-accordion",(fq.items||[]).map(it=>`<div class="acc-item"><button class="acc-q" aria-expanded="false">${esc(it.q)}<span class="plus">+</span></button><div class="acc-a"><p>${nl2br(esc(it.a))}</p></div></div>`).join(""));
+
+  /* ---- Footer ---- */
+  const ft=C.footer||{};
+  setHTML("footer-quote",nl2br(esc(ft.quote)));
+  setText("footer-date",ft.date);
+  setText("footer-names",ft.names);
+  setText("footer-thanks",ft.thanks);
+
+  /* ---- Section background photos ---- */
+  const bg=C.backgrounds||{};
+  const bgMap={hero:"bg-hero",countdown:"bg-countdown",story:"bg-story",details:"bg-details",gifts:"bg-gifts",footer:"bg-footer"};
+  Object.keys(bgMap).forEach(k=>{
+    const el=$(bgMap[k]);
+    if(el && bg[k]){ el.style.backgroundImage=`url('${bg[k]}')`; el.classList.add("has-photo"); }
+  });
+
+  /* expose merged config for the behavior script below */
+  window.__CFG = C;
+})();
+
+/* ============================================================
+   BEHAVIOR (preloader, envelope, reveals, parallax, particles,
+   countdown, faq, rsvp, music)
+   ============================================================ */
+(function(){
+  const CFG = window.__CFG || {};
+
+  /* PRELOADER */
+  window.addEventListener('load',()=>{ setTimeout(()=>document.getElementById('preloader').classList.add('hide'),1400); });
+
+  /* ENVELOPE */
+  const envelope=document.getElementById('envelope');
+  const landing=document.getElementById('landing');
+  let opened=false;
+  function openEnvelope(){
+    if(opened) return; opened=true;
+    if(landing) landing.classList.add('opening');   /* dissolve text, sweep, zoom */
+    if(envelope) envelope.classList.add('open');
+    try{ MUSIC.start(); }catch(e){}
+    setTimeout(()=>{ if(landing) landing.classList.add('dismiss'); document.body.classList.remove('locked'); window.scrollTo(0,0); refreshReveals(); },1500);
+    setTimeout(()=>{ if(landing) landing.style.display='none'; },3200);
+  }
+  if(landing){
+    landing.addEventListener('click',openEnvelope);
+    landing.addEventListener('keydown',e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openEnvelope(); } });
+  }
+
+  /* REVEALS */
+  let revealObserver=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); revealObserver.unobserve(en.target);} });
+  },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+  window.refreshReveals=function(){
+    document.querySelectorAll('.reveal:not(.in)').forEach(el=>{ const r=el.getBoundingClientRect(); if(r.top<window.innerHeight*0.92) el.classList.add('in'); });
+  };
+
+  /* PARALLAX + ZOOM */
+  if(window.gsap && window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+    document.querySelectorAll('[data-parallax]').forEach(el=>{
+      const sec=el.closest('.section');
+      gsap.fromTo(el,{yPercent:-6,scale:1.12},{yPercent:6,scale:1.02,ease:'none',scrollTrigger:{trigger:sec,start:'top bottom',end:'bottom top',scrub:true}});
+    });
+  }
+
+  /* PARTICLES */
+  document.querySelectorAll('[data-particles]').forEach(box=>{
+    const n=parseInt(box.dataset.particles,10)||12;
+    for(let i=0;i<n;i++){
+      const s=document.createElement('span');
+      const size=2+Math.random()*4;
+      s.style.width=size+'px';s.style.height=size+'px';s.style.left=Math.random()*100+'%';
+      s.style.animationDuration=(11+Math.random()*14)+'s';s.style.animationDelay=(Math.random()*12)+'s';
+      box.appendChild(s);
+    }
+  });
+
+  /* COUNTDOWN */
+  (function(){
+    const iso=(CFG.event&&CFG.event.dateISO)||'2026-12-19T12:00:00+08:00';
+    const target=new Date(iso).getTime();
+    const dEl=document.getElementById('cd-days'),hEl=document.getElementById('cd-hours'),mEl=document.getElementById('cd-min'),sEl=document.getElementById('cd-sec'),grid=document.getElementById('countGrid');
+    const pad=v=>String(v).padStart(2,'0');
+    function tick(){
+      const diff=target-Date.now();
+      if(diff<=0){grid.innerHTML='<div class="count-done">Today we begin forever. Thank you for being here.</div>';return;}
+      dEl.textContent=Math.floor(diff/86400000);
+      hEl.textContent=pad(Math.floor(diff%86400000/3600000));
+      mEl.textContent=pad(Math.floor(diff%3600000/60000));
+      sEl.textContent=pad(Math.floor(diff%60000/1000));
+      setTimeout(tick,1000);
+    }
+    tick();
+  })();
+
+  /* FAQ */
+  document.querySelectorAll('.acc-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const item=q.parentElement,ans=item.querySelector('.acc-a'),isOpen=item.classList.contains('open');
+      const scope=item.closest('.accordion')||document;
+      scope.querySelectorAll('.acc-item.open').forEach(o=>{o.classList.remove('open');o.querySelector('.acc-q').setAttribute('aria-expanded','false');o.querySelector('.acc-a').style.maxHeight=null;});
+      if(!isOpen){item.classList.add('open');q.setAttribute('aria-expanded','true');ans.style.maxHeight=ans.scrollHeight+'px';}
     });
   });
 
-  /* RSVP mailto */
-  document.getElementById('rsvpForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    var v=function(id){return document.getElementById(id).value.trim();};
-    var name=v('name'),attending=document.getElementById('attending').value,guests=v('guests'),meal=v('meal'),message=v('message');
-    var subject='Wedding RSVP — '+(name||'Guest');
-    var bodyTxt=['Name: '+name,'Response: '+attending,'Number of guests: '+guests,'Dietary notes: '+(meal||'None'),'Message: '+(message||'None')].join('\n');
-    window.location.href='mailto:michaelvdemesa@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(bodyTxt);
-  });
+  /* NAV (mobile toggle + close on link click) */
+  (function(){
+    const toggle=document.getElementById('nav-toggle');
+    const links=document.getElementById('nav-links');
+    if(!toggle||!links) return;
+    toggle.addEventListener('click',()=>{ const open=links.classList.toggle('open'); toggle.setAttribute('aria-expanded',open); toggle.classList.toggle('open',open); });
+    links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ links.classList.remove('open'); toggle.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }));
+  })();
+
+  /* RSVP */
+  (function(){
+    const rs=CFG.rsvp||{};
+    const form=document.getElementById('rsvpForm');
+    const modal=document.getElementById('thankModal');
+    const msg=document.getElementById('thankMsg');
+    function showThanks(name,attend){
+      const first=(name||'friend').trim().split(' ')[0];
+      const yes=(rs.thankYouYes||'Your seat is joyfully reserved.');
+      const no=(rs.thankYouNo||'You will be dearly missed.');
+      msg.textContent=`Thank you, ${first}. ${attend==='yes'?yes:no}`;
+      modal.classList.add('show');
+      form.reset();
+    }
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const attendEl=form.querySelector('input[name="attend"]:checked');
+      if(!attendEl){ const t=form.querySelector('.attend-toggle'); t.style.animation='shake .4s'; setTimeout(()=>t.style.animation='',400); return; }
+      const name=form.fullName.value, attend=attendEl.value;
+      if(rs.endpoint){
+        fetch(rs.endpoint,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
+          .then(()=>showThanks(name,attend)).catch(()=>showThanks(name,attend));
+      } else { showThanks(name,attend); }
+    });
+    document.getElementById('closeModal').addEventListener('click',()=>modal.classList.remove('show'));
+    modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show');});
+  })();
+
+  /* MUSIC — plays the configured YouTube track on envelope open, with a
+     graceful fallback to a generated ambient tone if no youtubeId is set.   */
+  var MUSIC = (function(){
+    var m = CFG.music || {};
+    var btn = document.getElementById('music-toggle');
+    var on = false;
+
+    /* ---------- YouTube path ---------- */
+    var ytPlayer=null, ytReady=false, wantPlay=false;
+    var startS = m.startSeconds || 0;
+    if(m.enabled && m.youtubeId){
+      var tag=document.createElement('script');
+      tag.src="https://www.youtube.com/iframe_api";
+      document.head.appendChild(tag);
+      window.onYouTubeIframeAPIReady=function(){
+        ytPlayer=new YT.Player('yt-player',{
+          videoId:m.youtubeId,
+          playerVars:{start:startS,autoplay:0,controls:0,disablekb:1,playsinline:1,rel:0,modestbranding:1,
+            loop:m.loop?1:0, playlist:m.loop?m.youtubeId:undefined},
+          events:{
+            onReady:function(){ ytReady=true; if(wantPlay) playYT(); },
+            onStateChange:function(e){
+              if(m.loop && e.data===YT.PlayerState.ENDED){ ytPlayer.seekTo(startS,true); ytPlayer.playVideo(); }
+            }
+          }
+        });
+      };
+    }
+    function playYT(){
+      if(!ytReady||!ytPlayer) return;
+      try{ ytPlayer.seekTo(startS,true); ytPlayer.unMute(); ytPlayer.setVolume(m.volume==null?70:m.volume); ytPlayer.playVideo(); }catch(e){}
+    }
+    function pauseYT(){ if(ytReady&&ytPlayer){ try{ ytPlayer.pauseVideo(); }catch(e){} } }
+
+    /* ---------- Ambient fallback path ---------- */
+    var audioCtx,masterGain;
+    function buildAmbient(){
+      audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+      masterGain=audioCtx.createGain();masterGain.gain.value=0;masterGain.connect(audioCtx.destination);
+      [196.00,246.94,293.66,392.00].forEach(function(f,i){
+        var osc=audioCtx.createOscillator();osc.type='sine';osc.frequency.value=f;
+        var g=audioCtx.createGain();g.gain.value=0.08/(i+1);
+        var lfo=audioCtx.createOscillator();lfo.frequency.value=0.08+i*0.03;
+        var lfoGain=audioCtx.createGain();lfoGain.gain.value=0.03;
+        lfo.connect(lfoGain);lfoGain.connect(g.gain);
+        osc.connect(g);g.connect(masterGain);osc.start();lfo.start();
+      });
+    }
+    function fadeAmbient(o){
+      if(!audioCtx)buildAmbient();
+      if(audioCtx.state==='suspended')audioCtx.resume();
+      var now=audioCtx.currentTime;
+      masterGain.gain.cancelScheduledValues(now);
+      masterGain.gain.setValueAtTime(masterGain.gain.value,now);
+      masterGain.gain.linearRampToValueAtTime(o?0.5:0,now+1.4);
+    }
+
+    function setOn(o){
+      on=o; btn.classList.toggle('paused',!on);
+      if(m.youtubeId){ if(o){ ytReady?playYT():(wantPlay=true); } else { wantPlay=false; pauseYT(); } }
+      else { fadeAmbient(o); }
+    }
+    btn.addEventListener('click',function(){ setOn(!on); });
+
+    return {
+      start:function(){ if(!m.enabled) return; btn.classList.add('visible'); setOn(true); }
+    };
+  })();
+
+  /* LANDING dust particles */
+  (function(){
+    const dust=document.getElementById('dust'); if(!dust) return;
+    for(let i=0;i<26;i++){
+      const s=document.createElement('span');
+      const sz=1+Math.random()*3;
+      s.style.width=sz+'px';s.style.height=sz+'px';
+      s.style.left=Math.random()*100+'%';
+      s.style.top=(55+Math.random()*45)+'%';
+      s.style.animationDuration=(9+Math.random()*12)+'s';
+      s.style.animationDelay=(Math.random()*10)+'s';
+      dust.appendChild(s);
+    }
+  })();
+
+  /* LANDING cursor parallax (paper responds subtly to the pointer) */
+  (function(){
+    if(!window.matchMedia||!window.matchMedia('(pointer:fine)').matches) return;
+    const wrap=document.getElementById('envelope');
+    const names=document.getElementById('landing-names');
+    let raf=null;
+    window.addEventListener('mousemove',e=>{
+      const cx=e.clientX/window.innerWidth-0.5, cy=e.clientY/window.innerHeight-0.5;
+      if(raf) cancelAnimationFrame(raf);
+      raf=requestAnimationFrame(()=>{
+        if(wrap) wrap.style.transform=`translate(${cx*10}px,${cy*8}px)`;
+        if(names) names.style.transform=`translate(${cx*-6}px,${cy*-4}px)`;
+      });
+    },{passive:true});
+  })();
+
+  /* LIGHTBOX — luxury photo viewer (zoom / pan / swipe / keyboard), multi-group */
+  (function(){
+    const groups=window.__LB_GROUPS||{};
+    const lb=document.getElementById('lightbox'), img=document.getElementById('lb-img');
+    const cap=document.getElementById('lb-caption'), counter=document.getElementById('lb-counter');
+    if(!lb||!img) return;
+    let items=[], cur=0, scale=1, tx=0, ty=0, prevOverflow='';
+    const MIN=1, MAX=4;
+    function apply(){ img.style.transform=`translate(${tx}px,${ty}px) scale(${scale})`; img.classList.toggle('zoomed',scale>1); }
+    function resetZoom(){ scale=1;tx=0;ty=0; img.classList.remove('panning'); apply(); }
+    function show(i){
+      if(!items.length) return;
+      cur=(i+items.length)%items.length; resetZoom();
+      img.src=items[cur].src; img.alt=items[cur].caption||('Photograph '+(cur+1));
+      cap.textContent=items[cur].caption||''; counter.textContent=(cur+1)+' / '+items.length;
+    }
+    function open(group,i){ items=groups[group]||[]; if(!items.length) return; show(i); prevOverflow=document.body.style.overflow; document.body.style.overflow='hidden'; lb.classList.add('show'); lb.setAttribute('aria-hidden','false'); }
+    function close(){ lb.classList.remove('show'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=prevOverflow; }
+    const next=()=>show(cur+1), prev=()=>show(cur-1);
+
+    document.addEventListener('click',e=>{ const f=e.target.closest('[data-lb-group]'); if(f) open(f.dataset.lbGroup,+f.dataset.lb); });
+    document.addEventListener('keydown',e=>{ if(e.key!=='Enter'&&e.key!==' ')return; const a=document.activeElement; const f=a&&a.closest&&a.closest('[data-lb-group]'); if(f){ e.preventDefault(); open(f.dataset.lbGroup,+f.dataset.lb); } });
+    document.getElementById('lb-close').addEventListener('click',close);
+    document.getElementById('lb-next').addEventListener('click',e=>{e.stopPropagation();next();});
+    document.getElementById('lb-prev').addEventListener('click',e=>{e.stopPropagation();prev();});
+    lb.addEventListener('click',e=>{ if(e.target===lb||e.target.id==='lb-stage') close(); });
+    document.addEventListener('keydown',e=>{ if(!lb.classList.contains('show'))return; if(e.key==='Escape')close(); else if(e.key==='ArrowRight')next(); else if(e.key==='ArrowLeft')prev(); });
+    lb.addEventListener('wheel',e=>{ if(!lb.classList.contains('show'))return; e.preventDefault(); scale=Math.min(MAX,Math.max(MIN, scale - e.deltaY*0.0016)); if(scale<=1){scale=1;tx=0;ty=0;} apply(); },{passive:false});
+    img.addEventListener('dblclick',e=>{ e.preventDefault(); if(scale>1) resetZoom(); else { scale=2.4; apply(); } });
+    let dragging=false,sx=0,sy=0,stx=0,sty=0,moved=false;
+    img.addEventListener('pointerdown',e=>{ dragging=true;moved=false;sx=e.clientX;sy=e.clientY;stx=tx;sty=ty; try{img.setPointerCapture(e.pointerId);}catch(_){} if(scale>1) img.classList.add('panning'); });
+    img.addEventListener('pointermove',e=>{ if(!dragging)return; const dx=e.clientX-sx, dy=e.clientY-sy; if(Math.abs(dx)+Math.abs(dy)>6)moved=true; if(scale>1){ tx=stx+dx; ty=sty+dy; apply(); } });
+    img.addEventListener('pointerup',e=>{ if(!dragging)return; dragging=false; img.classList.remove('panning'); const dx=e.clientX-sx; if(scale===1&&moved&&Math.abs(dx)>60){ dx<0?next():prev(); } });
+    img.addEventListener('pointercancel',()=>{ dragging=false; img.classList.remove('panning'); });
+  })();
+
+  window.addEventListener('scroll',()=>{if(!document.body.classList.contains('locked'))window.refreshReveals();},{passive:true});
+  window.addEventListener('resize',()=>{if(window.ScrollTrigger)ScrollTrigger.refresh();});
+})();
 </script>
 </body>
 </html>
