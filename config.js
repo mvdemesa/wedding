@@ -264,7 +264,7 @@ const WEDDING_CONFIG = {
   backgrounds: {
     hero:      "ARTZ3291.jpg",
     countdown: "ARTZ3140.jpg",
-    story:     "C4A28346-AF82-45B5-B49D-A27590C572CC.jpg",
+    story:     "C4A283~1.JPG",
     details:   "ARTZ3083.jpg",
     gifts:     "ARTZ3196.jpg",
     footer:    "ARTZ3400.jpg",
