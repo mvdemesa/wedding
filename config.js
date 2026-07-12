@@ -63,23 +63,24 @@ const WEDDING_CONFIG = {
 
   /* ---- Our Love Story ---- */
   story: {
-    eyebrow: "The Beginning Of Forever",
+    eyebrow: "The Beginning of Forever",
     title: "Our Love Story",
     subtitle: "Every beautiful journey begins with a simple hello.",
     // Each string is a paragraph. The first one gets a decorative drop-cap.
     paragraphs: [
-      "It all started with a simple message.",
-      "While pursuing our Masters in Business Administration at San Beda University, Mike and Miya were virtual classmates. In January 2024, during their Benedictine Spirituality class, Mike messaged Miya to ask about their homework. One conversation turned into many, and before long, they looked forward to talking every day.",
-      "Wanting to know each other beyond the screen, Mike drove from Batangas to Quezon City for their very first date at Starbucks Visayas Avenue. What began over coffee soon became something much more.",
+      "It all began with a simple message.",
+      "While pursuing their Master of Business Administration at San Beda University, Mike and Miya were virtual classmates. In January 2024, during their Benedictine Spirituality class, Mike reached out to Miya to ask about their homework. One conversation quickly led to another, and before long, they found themselves looking forward to talking every day.",
+      "Wanting to know each other beyond the screen, Mike drove from Batangas to Quezon City for their very first date at Starbucks Visayas Avenue. What began over coffee soon blossomed into something truly special.",
       "On March 24, 2024, Miya's birthday, they officially became a couple.",
-      "Together, they built a home, explored beautiful places, and created countless memories through their travels.",
-      "Then, on the magical evening of October 5, 2026, beneath the lights of Hong Kong, Mike asked the question they had both been waiting for. She said yes.",
-      "Now, they cannot wait to begin forever surrounded by the people they love most.",
+      "Together, they built a home, explored beautiful destinations, and created countless memories through their travels.",
+      "Then, on the magical evening of October 5, 2025, beneath the dazzling lights of Hong Kong, Mike asked the question they had both been waiting for.",
+      "She said yes.",
+      "Now, they look forward to beginning their greatest adventure together, surrounded by the people they love most.",
     ],
     milestones: [
       { date: "Jan 2024",     text: "A simple hello in class" },
       { date: "Mar 24, 2024", text: "Officially a couple" },
-      { date: "Oct 5, 2026",  text: "She said yes in Hong Kong" },
+      { date: "Oct 5, 2025",  text: "She said yes in Hong Kong" },
       { date: "Dec 19, 2026", text: "Forever begins" },
     ],
   },
