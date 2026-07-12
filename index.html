@@ -453,7 +453,7 @@ section[id]{scroll-margin-top:64px}
 #landing.dismiss{opacity:0;visibility:hidden;pointer-events:none}
 
 /* background photo — Ken Burns */
-.cine-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transform:scale(1.02);filter:saturate(1.08) contrast(1.03) brightness(1.02) sepia(.05);transition:opacity 1.6s var(--ease);animation:kenburns 30s ease-in-out infinite alternate}
+.cine-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center center;background-repeat:no-repeat;opacity:0;transform:scale(1.02);filter:saturate(1.08) contrast(1.03) brightness(1.02) sepia(.05);transition:opacity 1.6s var(--ease);animation:kenburns 30s ease-in-out infinite alternate}
 #landing.has-photo .cine-bg{opacity:1}
 @keyframes kenburns{0%{transform:scale(1.02)}100%{transform:scale(1.05) translateY(-1%)}}
 
@@ -480,7 +480,7 @@ section[id]{scroll-margin-top:64px}
 .cine-names{display:flex;flex-direction:column;align-items:center;gap:.05rem;line-height:1.02;animation:cineUp 1.2s var(--ease) .2s both}
 .cine-names .cn-line{font-family:var(--script);font-size:clamp(2.4rem,7.5vw,4.8rem);
   background:linear-gradient(100deg,#e9d3a1 0%,#e9d3a1 42%,#fff1cb 50%,#c9a24b 56%,#e9d3a1 66%,#e9d3a1 100%);background-size:280% 100%;background-position:150% 0;
-  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#e7cfa0;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#e7cfa0;-webkit-text-stroke:.6px rgba(83,33,43,.5);paint-order:stroke fill;text-shadow:0 1px 3px rgba(58,9,18,.3);
   filter:drop-shadow(0 2px 12px rgba(20,6,10,.5));animation:foil 8s ease-in-out 1.4s infinite}
 .cine-names .cn-amp{font-family:var(--script);font-size:clamp(3.2rem,9.5vw,6rem);line-height:.7;margin:.05rem 0;color:#efdcac;-webkit-text-fill-color:#efdcac;filter:drop-shadow(0 2px 14px rgba(20,6,10,.55))}
 @keyframes cineUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
@@ -488,7 +488,7 @@ section[id]{scroll-margin-top:64px}
 .cine-oneliner{font-family:var(--serif);color:#f6efe1;font-size:clamp(1.05rem,2.6vw,1.5rem);letter-spacing:.06em;margin-top:clamp(1.4rem,4vh,2.6rem);opacity:0;text-shadow:0 2px 12px rgba(20,6,10,.5);animation:cineFade 1.4s var(--ease) 1.1s forwards}
 @keyframes cineFade{from{opacity:0;transform:translateY(10px)}to{opacity:.96;transform:none}}
 
-.cine-prompt{position:absolute;bottom:clamp(26px,6vh,54px);left:0;right:0;z-index:4;display:flex;flex-direction:column;align-items:center;gap:.7rem;font-family:var(--body);color:rgba(246,239,225,.7);font-size:.8rem;letter-spacing:.04em;opacity:0;animation:cineFade 1.4s var(--ease) 2s forwards}
+.cine-prompt{position:relative;z-index:4;margin-top:clamp(1.6rem,4vh,2.6rem);display:flex;flex-direction:column;align-items:center;gap:.7rem;font-family:var(--body);color:rgba(246,239,225,.7);font-size:.8rem;letter-spacing:.04em;opacity:0;animation:cineFade 1.4s var(--ease) 2s forwards}
 .cine-chevron{width:15px;height:15px;border-right:1.5px solid rgba(246,239,225,.7);border-bottom:1.5px solid rgba(246,239,225,.7);transform:rotate(45deg);animation:chevron 1.8s ease-in-out infinite}
 @keyframes chevron{0%,100%{transform:rotate(45deg) translate(0,0);opacity:.5}50%{transform:rotate(45deg) translate(3px,3px);opacity:1}}
 
