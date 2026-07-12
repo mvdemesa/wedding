@@ -1152,7 +1152,7 @@ section[id]{scroll-margin-top:64px}
       if(!attendEl){ const t=form.querySelector('.attend-toggle'); t.style.animation='shake .4s'; setTimeout(()=>t.style.animation='',400); return; }
       const name=form.fullName.value, attend=attendEl.value;
       if(rs.endpoint){
-        fetch(rs.endpoint,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
+        fetch(rs.endpoint,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'},body:new URLSearchParams([...new FormData(form)]).toString()})
           .then(()=>showThanks(name,attend)).catch(()=>showThanks(name,attend));
       } else { showThanks(name,attend); }
     });
