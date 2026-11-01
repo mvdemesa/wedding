@@ -540,7 +540,9 @@ section[id]{scroll-margin-top:64px}
 .sp-pair em{font-style:normal;color:var(--gold);font-family:var(--display);font-size:1.5em;line-height:1}
 .sp-sub{font-family:var(--body);text-transform:uppercase;letter-spacing:.24em;font-size:.72rem;color:var(--gold-bright);margin-bottom:.8rem;text-align:center}
 .sp-roles{list-style:none;margin:0 auto;padding:0;max-width:430px}
-.sp-roles li{display:flex;flex-direction:column;gap:.12rem;padding:.6rem 0;border-bottom:1px solid rgba(201,162,75,.14)}
+.sp-roles li{display:flex;flex-direction:column;gap:.12rem;padding:.6rem .4rem;border-bottom:1px solid rgba(201,162,75,.14);min-height:3.1rem;justify-content:center}
+.sp-roles li.sp-spacer{border-bottom:none}
+.sp-amp{font-style:normal;color:var(--gold);font-family:var(--display);font-size:1.3em;line-height:1;vertical-align:-0.04em}
 .sp-roles li:last-child{border-bottom:none}
 .sp-roles .r-name{font-family:var(--body);color:var(--ivory);font-size:1.08rem}
 .sp-roles .r-role{font-family:var(--serif);font-style:italic;color:var(--champagne);font-size:.9rem;opacity:.92}
@@ -549,6 +551,8 @@ section[id]{scroll-margin-top:64px}
 .r-role-inline{font-family:var(--serif);font-style:italic;color:var(--champagne)}
 @media(max-width:640px){
   .sp-duo{grid-template-columns:1fr;gap:2.2rem}
+  .sp-roles li{min-height:0}
+  .sp-roles li.sp-spacer{display:none}
   .sp-pairs{grid-template-columns:1fr;gap:1rem}
   .sp-pair{grid-template-columns:1fr;gap:.05rem;text-align:center}
   .sp-pair span:first-child,.sp-pair span:last-child{text-align:center}
@@ -585,8 +589,8 @@ section[id]{scroll-margin-top:64px}
     <a href="#story">Story</a>
     <a href="#frames">Gallery</a>
     <a href="#details">Details</a>
-    <a href="#dress">Attire</a>
     <a href="#entourage">Entourage</a>
+    <a href="#dress">Attire</a>
     <a href="#rsvp">RSVP</a>
     <a href="#faq">FAQ</a>
     <a href="#gifts">Gifts</a>
@@ -792,25 +796,13 @@ section[id]{scroll-margin-top:64px}
   </div>
 </section>
 
-<!-- DRESS -->
-<section id="dress" class="section center" aria-label="Dress code">
-  <div class="wrap">
-    <p class="eyebrow reveal" id="dress-eyebrow"></p>
-    <h2 class="section-title reveal d1" id="dress-title"></h2>
-    <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
-    <p class="dress-note reveal d1" id="dress-note"></p>
-    <div class="dress-cards" id="dress-cards"></div>
-    <div id="dress-men"></div>
-  </div>
-</section>
-
 <!-- ENTOURAGE & SPONSORS -->
 <section id="entourage" class="section center" aria-label="Sponsors and entourage">
   <div class="wrap sp-wrap">
     <p class="eyebrow reveal">With Our Beloved</p>
     <h2 class="section-title reveal d1">Sponsors &amp; Entourage</h2>
     <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
-    <p class="section-sub reveal d1">Surrounded by the family and friends who have shaped our journey.</p>
+    <p class="section-sub reveal d1">The family and dear friends who have known and loved each of us &mdash; and whom we now lovingly ask to guide us through married life.</p>
     <div class="sp-block reveal d2">
       <div class="sp-duo">
         <div class="sp-col"><h3 class="sp-label">Parents of the Groom</h3><p class="sp-names">Mr. Rodolfo M. De Mesa<br/>Mrs. Nicolasa V. De Mesa <span class="sp-cross" title="In loving memory">&#10013;</span></p></div>
@@ -836,14 +828,15 @@ section[id]{scroll-margin-top:64px}
     </div>
     <div class="sp-block reveal d2">
       <div class="sp-duo">
-        <div class="sp-col"><h3 class="sp-label">Siblings of the Groom</h3><p class="sp-names">Jojit V. De Mesa &amp; Ruth A. De Mesa<br/>Arnel V. De Mesa &amp; Melissa F. De Mesa<br/>Erwin V. De Mesa &amp; Mary Anne H. De Mesa</p></div>
-        <div class="sp-col"><h3 class="sp-label">Siblings of the Bride</h3><p class="sp-names">Michelle Ericka O. Jegillos &amp; Hermogenes R. Jegillos<br/>Maritoni Elizabeth O. Reyes &amp; Juan Miguel Antonio S. Reyes<br/>Marianne Elisha S. Onquit</p></div>
+        <div class="sp-col"><h3 class="sp-label">Siblings of the Groom</h3><p class="sp-names">Jojit V. De Mesa <em class="sp-amp">&amp;</em> Ruth A. De Mesa<br/>Arnel V. De Mesa <em class="sp-amp">&amp;</em> Melissa F. De Mesa<br/>Erwin V. De Mesa <em class="sp-amp">&amp;</em> Mary Anne H. De Mesa</p></div>
+        <div class="sp-col"><h3 class="sp-label">Siblings of the Bride</h3><p class="sp-names">Michelle Ericka O. Jegillos <em class="sp-amp">&amp;</em> Hermogenes R. Jegillos<br/>Maritoni Elizabeth O. Reyes <em class="sp-amp">&amp;</em> Juan Miguel Antonio S. Reyes<br/>Marianne Elisha S. Onquit</p></div>
       </div>
     </div>
     <div class="sp-block reveal d2">
       <h3 class="sp-group-title">Entourage &amp; Secondary Sponsors</h3>
       <div class="sp-duo">
         <div class="sp-col"><h4 class="sp-sub">Groomsmen</h4><ul class="sp-roles">
+          <li class="sp-spacer" aria-hidden="true"></li>
           <li><span class="r-name">John Lesther F. Escamillas</span><span class="r-role">Best Man</span></li>
           <li><span class="r-name">John Kevin F. Escamillas</span><span class="r-role">Groomsman &middot; Candle Sponsor</span></li>
           <li><span class="r-name">John Airwin Franch R. Azul</span><span class="r-role">Groomsman &middot; Veil Sponsor</span></li>
@@ -873,6 +866,18 @@ section[id]{scroll-margin-top:64px}
       <h3 class="sp-group-title">Mass Readers</h3>
       <p class="sp-names">Lance Alvin S. Lurzano &nbsp;&middot;&nbsp; Kalvin Troy W. Luna &nbsp;&middot;&nbsp; Kwin Anne S. Caliwag &nbsp;&middot;&nbsp; Shanelle Zoe N. Solis</p>
     </div>
+  </div>
+</section>
+
+<!-- DRESS -->
+<section id="dress" class="section center" aria-label="Dress code">
+  <div class="wrap">
+    <p class="eyebrow reveal" id="dress-eyebrow"></p>
+    <h2 class="section-title reveal d1" id="dress-title"></h2>
+    <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
+    <p class="dress-note reveal d1" id="dress-note"></p>
+    <div class="dress-cards" id="dress-cards"></div>
+    <div id="dress-men"></div>
   </div>
 </section>
 
