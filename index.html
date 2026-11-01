@@ -549,10 +549,19 @@ section[id]{scroll-margin-top:64px}
 .sp-roles-center{max-width:780px;margin:0 auto}
 .sp-roles-center .sp-names{margin:.3rem 0}
 .r-role-inline{font-family:var(--serif);font-style:italic;color:var(--champagne)}
+.sp-bearers{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem 2rem;max-width:720px;margin:.4rem auto 0}
+.sp-bearer{display:flex;flex-direction:column;gap:.2rem;text-align:center}
+.sp-bearer .r-role,.sp-fg-block>.r-role{font-family:var(--body);text-transform:uppercase;letter-spacing:.2em;font-size:.68rem;color:var(--champagne);opacity:.95}
+.sp-bearer .r-name{font-family:var(--body);color:var(--ivory);font-size:1.08rem}
+.sp-fg-block{max-width:560px;margin:2rem auto 0;text-align:center}
+.sp-fg{display:grid;grid-template-columns:1fr 1fr;gap:.55rem 2.2rem;margin-top:.7rem}
+.sp-fg span{font-family:var(--body);color:var(--ivory);font-size:1.06rem}
 @media(max-width:640px){
   .sp-duo{grid-template-columns:1fr;gap:2.2rem}
   .sp-roles li{min-height:0}
   .sp-roles li.sp-spacer{display:none}
+  .sp-bearers{grid-template-columns:1fr;gap:1.2rem}
+  .sp-fg{grid-template-columns:1fr;gap:.4rem}
   .sp-pairs{grid-template-columns:1fr;gap:1rem}
   .sp-pair{grid-template-columns:1fr;gap:.05rem;text-align:center}
   .sp-pair span:first-child,.sp-pair span:last-child{text-align:center}
@@ -802,7 +811,7 @@ section[id]{scroll-margin-top:64px}
     <p class="eyebrow reveal">With Our Beloved</p>
     <h2 class="section-title reveal d1">Sponsors &amp; Entourage</h2>
     <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
-    <p class="section-sub reveal d1">The family and dear friends who have known and loved each of us &mdash; and whom we now lovingly ask to guide us through married life.</p>
+    <p class="section-sub reveal d1">The hearts who have known us, each along our own journeys, now joined to bless and guide the life we begin as one.</p>
     <div class="sp-block reveal d2">
       <div class="sp-duo">
         <div class="sp-col"><h3 class="sp-label">Parents of the Groom</h3><p class="sp-names">Mr. Rodolfo M. De Mesa<br/>Mrs. Nicolasa V. De Mesa <span class="sp-cross" title="In loving memory">&#10013;</span></p></div>
@@ -822,7 +831,7 @@ section[id]{scroll-margin-top:64px}
         <div class="sp-pair"><span>Jolan L. Solis</span><em>&amp;</em><span>Kharen T. Ng</span></div>
         <div class="sp-pair"><span>Emy Nigoza</span><em>&amp;</em><span>Gerry Nigoza</span></div>
         <div class="sp-pair"><span>Roger P. Navarro</span><em>&amp;</em><span>Joey C. Pimentel</span></div>
-        <div class="sp-pair"><span>Francisco A. Uyami Jr.</span><em>&amp;</em><span>Nessie D. Uyami</span></div>
+        <div class="sp-pair"><span>Atty. Francisco A. Uyami Jr.</span><em>&amp;</em><span>Nessie D. Uyami</span></div>
         <div class="sp-pair"><span>James Volante</span><em>&amp;</em><span>Princess Hasmin S. Volante</span></div>
       </div>
     </div>
@@ -855,16 +864,24 @@ section[id]{scroll-margin-top:64px}
     </div>
     <div class="sp-block reveal d2">
       <h3 class="sp-group-title">Bearers</h3>
-      <div class="sp-roles-center">
-        <p class="sp-names"><span class="r-role-inline">Ring Bearer</span> &mdash; Pericleo C. Solis</p>
-        <p class="sp-names"><span class="r-role-inline">Arrhae Bearer</span> &mdash; Marianne Elisha S. Onquit</p>
-        <p class="sp-names"><span class="r-role-inline">Escort</span> &mdash; Azhlei Motas</p>
-        <p class="sp-names"><span class="r-role-inline">Flower Girls</span> &mdash; Lorraine Anne F. De Mesa, Ashera Temarrie H. De Mesa, Chelsea Kate N. Solis, Marina L. Solis</p>
+      <div class="sp-bearers">
+        <div class="sp-bearer"><span class="r-role">Ring Bearer</span><span class="r-name">Pericleo C. Solis</span></div>
+        <div class="sp-bearer"><span class="r-role">Arrhae Bearer</span><span class="r-name">Marianne Elisha S. Onquit</span></div>
+        <div class="sp-bearer"><span class="r-role">Escort</span><span class="r-name">Azhlei Motas</span></div>
+      </div>
+      <div class="sp-fg-block">
+        <span class="r-role">Flower Girls</span>
+        <div class="sp-fg">
+          <span>Lorraine Anne F. De Mesa</span>
+          <span>Ashera Temarrie H. De Mesa</span>
+          <span>Chelsea Kate N. Solis</span>
+          <span>Marina L. Solis</span>
+        </div>
       </div>
     </div>
     <div class="sp-block reveal d2">
       <h3 class="sp-group-title">Mass Readers</h3>
-      <p class="sp-names">Lance Alvin S. Lurzano &nbsp;&middot;&nbsp; Kalvin Troy W. Luna &nbsp;&middot;&nbsp; Kwin Anne S. Caliwag &nbsp;&middot;&nbsp; Shanelle Zoe N. Solis</p>
+      <p class="sp-names">Lance Alvin S. Lurzano &nbsp;&middot;&nbsp; Troy Wong &nbsp;&middot;&nbsp; Kwin Anne S. Caliwag &nbsp;&middot;&nbsp; Shanelle Zoe N. Solis</p>
     </div>
   </div>
 </section>
