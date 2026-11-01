@@ -522,6 +522,38 @@ section[id]{scroll-margin-top:64px}
   .cine-bg{opacity:1;transform:none}
 }
 
+/* ============================================================ ENTOURAGE / SPONSORS ============================================================ */
+#entourage{background:linear-gradient(180deg,#2a060d,#3A0912 50%,#2a060d)}
+.sp-wrap{max-width:1000px}
+.sp-block{margin:2.8rem auto 0;max-width:960px}
+.sp-block:not(:first-of-type)::before{content:"";display:block;width:90px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:0 auto 2.6rem;opacity:.55}
+.sp-group-title{font-family:var(--display);font-size:clamp(2rem,5vw,3rem);color:var(--gold-bright);line-height:1.12;margin-bottom:1.2rem;text-shadow:0 3px 24px rgba(201,162,75,.22)}
+.sp-duo{display:grid;grid-template-columns:1fr 1fr;gap:1.8rem 3rem;align-items:start}
+.sp-col{text-align:center}
+.sp-label{font-family:var(--body);font-weight:600;text-transform:uppercase;letter-spacing:.24em;font-size:.74rem;color:var(--champagne);margin-bottom:.8rem}
+.sp-names{font-family:var(--body);color:var(--ivory);font-size:clamp(1.02rem,2.2vw,1.14rem);line-height:1.95;letter-spacing:.01em}
+.sp-cross{color:var(--gold);opacity:.85;font-size:.85em}
+.sp-pairs{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem 2.8rem;max-width:880px;margin:0 auto}
+.sp-pair{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.6rem;font-family:var(--body);color:var(--ivory);font-size:clamp(.98rem,2vw,1.1rem)}
+.sp-pair span:first-child{text-align:right}
+.sp-pair span:last-child{text-align:left}
+.sp-pair em{font-style:normal;color:var(--gold);font-family:var(--display);font-size:1.5em;line-height:1}
+.sp-sub{font-family:var(--body);text-transform:uppercase;letter-spacing:.24em;font-size:.72rem;color:var(--gold-bright);margin-bottom:.8rem;text-align:center}
+.sp-roles{list-style:none;margin:0 auto;padding:0;max-width:430px}
+.sp-roles li{display:flex;flex-direction:column;gap:.12rem;padding:.6rem 0;border-bottom:1px solid rgba(201,162,75,.14)}
+.sp-roles li:last-child{border-bottom:none}
+.sp-roles .r-name{font-family:var(--body);color:var(--ivory);font-size:1.08rem}
+.sp-roles .r-role{font-family:var(--serif);font-style:italic;color:var(--champagne);font-size:.9rem;opacity:.92}
+.sp-roles-center{max-width:780px;margin:0 auto}
+.sp-roles-center .sp-names{margin:.3rem 0}
+.r-role-inline{font-family:var(--serif);font-style:italic;color:var(--champagne)}
+@media(max-width:640px){
+  .sp-duo{grid-template-columns:1fr;gap:2.2rem}
+  .sp-pairs{grid-template-columns:1fr;gap:1rem}
+  .sp-pair{grid-template-columns:1fr;gap:.05rem;text-align:center}
+  .sp-pair span:first-child,.sp-pair span:last-child{text-align:center}
+  .sp-pair em{font-size:1.3em;margin:.1rem 0}
+}
 /* ============================================================ RESPONSIVE ============================================================ */
 @media(max-width:900px){ .gallery{grid-template-columns:repeat(2,1fr)} }
 @media(max-width:820px){
@@ -554,6 +586,7 @@ section[id]{scroll-margin-top:64px}
     <a href="#frames">Gallery</a>
     <a href="#details">Details</a>
     <a href="#dress">Attire</a>
+    <a href="#entourage">Entourage</a>
     <a href="#rsvp">RSVP</a>
     <a href="#faq">FAQ</a>
     <a href="#gifts">Gifts</a>
@@ -768,6 +801,78 @@ section[id]{scroll-margin-top:64px}
     <p class="dress-note reveal d1" id="dress-note"></p>
     <div class="dress-cards" id="dress-cards"></div>
     <div id="dress-men"></div>
+  </div>
+</section>
+
+<!-- ENTOURAGE & SPONSORS -->
+<section id="entourage" class="section center" aria-label="Sponsors and entourage">
+  <div class="wrap sp-wrap">
+    <p class="eyebrow reveal">With Our Beloved</p>
+    <h2 class="section-title reveal d1">Sponsors &amp; Entourage</h2>
+    <div class="divider reveal d1"><span class="line"></span><span class="diamond"></span><span class="line r"></span></div>
+    <p class="section-sub reveal d1">Surrounded by the family and friends who have shaped our journey.</p>
+    <div class="sp-block reveal d2">
+      <div class="sp-duo">
+        <div class="sp-col"><h3 class="sp-label">Parents of the Groom</h3><p class="sp-names">Mr. Rodolfo M. De Mesa<br/>Mrs. Nicolasa V. De Mesa <span class="sp-cross" title="In loving memory">&#10013;</span></p></div>
+        <div class="sp-col"><h3 class="sp-label">Parents of the Bride</h3><p class="sp-names">Mr. Enrico M. Onquit<br/>Mrs. Solita S. Onquit</p></div>
+      </div>
+    </div>
+    <div class="sp-block reveal d2">
+      <h3 class="sp-group-title">Principal Sponsors</h3>
+      <div class="sp-pairs">
+        <div class="sp-pair"><span>Angelito A. Alvarez</span><em>&amp;</em><span>Maria Vilma D. Alvarez</span></div>
+        <div class="sp-pair"><span>Benigno V. Baladad Jr.</span><em>&amp;</em><span>Mae G. Baladad</span></div>
+        <div class="sp-pair"><span>Jhoanna Fe I. Garcia</span><em>&amp;</em><span>Nelson Garcia</span></div>
+        <div class="sp-pair"><span>Marietta P. Hingada</span><em>&amp;</em><span>Ronald Hingada</span></div>
+        <div class="sp-pair"><span>Emelita N. Jeciel</span><em>&amp;</em><span>Leonardo F. Jeciel Jr.</span></div>
+        <div class="sp-pair"><span>Dorothy Lanting</span><em>&amp;</em><span>Romeo Lanting</span></div>
+        <div class="sp-pair"><span>Lilith Montayre</span><em>&amp;</em><span>Tiburcio Maldo</span></div>
+        <div class="sp-pair"><span>Jolan L. Solis</span><em>&amp;</em><span>Kharen T. Ng</span></div>
+        <div class="sp-pair"><span>Emy Nigoza</span><em>&amp;</em><span>Gerry Nigoza</span></div>
+        <div class="sp-pair"><span>Roger P. Navarro</span><em>&amp;</em><span>Joey C. Pimentel</span></div>
+        <div class="sp-pair"><span>Francisco A. Uyami Jr.</span><em>&amp;</em><span>Nessie D. Uyami</span></div>
+        <div class="sp-pair"><span>James Volante</span><em>&amp;</em><span>Princess Hasmin S. Volante</span></div>
+      </div>
+    </div>
+    <div class="sp-block reveal d2">
+      <div class="sp-duo">
+        <div class="sp-col"><h3 class="sp-label">Siblings of the Groom</h3><p class="sp-names">Jojit V. De Mesa &amp; Ruth A. De Mesa<br/>Arnel V. De Mesa &amp; Melissa F. De Mesa<br/>Erwin V. De Mesa &amp; Mary Anne H. De Mesa</p></div>
+        <div class="sp-col"><h3 class="sp-label">Siblings of the Bride</h3><p class="sp-names">Michelle Ericka O. Jegillos &amp; Hermogenes R. Jegillos<br/>Maritoni Elizabeth O. Reyes &amp; Juan Miguel Antonio S. Reyes<br/>Marianne Elisha S. Onquit</p></div>
+      </div>
+    </div>
+    <div class="sp-block reveal d2">
+      <h3 class="sp-group-title">Entourage &amp; Secondary Sponsors</h3>
+      <div class="sp-duo">
+        <div class="sp-col"><h4 class="sp-sub">Groomsmen</h4><ul class="sp-roles">
+          <li><span class="r-name">John Lesther F. Escamillas</span><span class="r-role">Best Man</span></li>
+          <li><span class="r-name">John Kevin F. Escamillas</span><span class="r-role">Groomsman &middot; Candle Sponsor</span></li>
+          <li><span class="r-name">John Airwin Franch R. Azul</span><span class="r-role">Groomsman &middot; Veil Sponsor</span></li>
+          <li><span class="r-name">Dodge Ram T. Ferando</span><span class="r-role">Groomsman &middot; Cord Sponsor</span></li>
+          <li><span class="r-name">Raven Raj T. Ferando</span><span class="r-role">Groomsman</span></li>
+        </ul></div>
+        <div class="sp-col"><h4 class="sp-sub">Bridesmaids</h4><ul class="sp-roles">
+          <li><span class="r-name">Maritoni Elizabeth O. Reyes</span><span class="r-role">Matron of Honor</span></li>
+          <li><span class="r-name">Ma. Clarice Nazareno</span><span class="r-role">Maid of Honor</span></li>
+          <li><span class="r-name">Nicole J. Nepomuceno</span><span class="r-role">Bridesmaid &middot; Candle Sponsor</span></li>
+          <li><span class="r-name">Angeli D. Alvarez</span><span class="r-role">Bridesmaid &middot; Veil Sponsor</span></li>
+          <li><span class="r-name">Kristine Anne S. Lurzano</span><span class="r-role">Bridesmaid &middot; Cord Sponsor</span></li>
+          <li><span class="r-name">Karina DC. Uyami</span><span class="r-role">Bridesmaid</span></li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="sp-block reveal d2">
+      <h3 class="sp-group-title">Bearers</h3>
+      <div class="sp-roles-center">
+        <p class="sp-names"><span class="r-role-inline">Ring Bearer</span> &mdash; Pericleo C. Solis</p>
+        <p class="sp-names"><span class="r-role-inline">Arrhae Bearer</span> &mdash; Marianne Elisha S. Onquit</p>
+        <p class="sp-names"><span class="r-role-inline">Escort</span> &mdash; Azhlei Motas</p>
+        <p class="sp-names"><span class="r-role-inline">Flower Girls</span> &mdash; Lorraine Anne F. De Mesa, Ashera Temarrie H. De Mesa, Chelsea Kate N. Solis, Marina L. Solis</p>
+      </div>
+    </div>
+    <div class="sp-block reveal d2">
+      <h3 class="sp-group-title">Mass Readers</h3>
+      <p class="sp-names">Lance Alvin S. Lurzano &nbsp;&middot;&nbsp; Kalvin Troy W. Luna &nbsp;&middot;&nbsp; Kwin Anne S. Caliwag &nbsp;&middot;&nbsp; Shanelle Zoe N. Solis</p>
+    </div>
   </div>
 </section>
 
