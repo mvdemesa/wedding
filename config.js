@@ -33,9 +33,9 @@ const WEDDING_CONFIG = {
   /* ---- The date & place (also drives the countdown) ---- */
   event: {
     // ISO date with timezone offset. +08:00 = Philippine Standard Time.
-    dateISO: "2026-12-19T12:00:00+08:00",
+    dateISO: "2026-12-19T11:30:00+08:00",
     dateLong: "Saturday, December 19, 2026",
-    timeText: "12:00 in the Afternoon",
+    timeText: "11:30 in the Morning",
     location: "Lipa City, Batangas",
   },
 
@@ -112,7 +112,7 @@ const WEDDING_CONFIG = {
       name: "Our Lady of Peace and Good Voyage",
       venue: "Lipa City, Batangas",
       when: "Saturday, December 19, 2026",
-      when2: "12:00 in the Afternoon",
+      when2: "11:30 in the Morning",
       mapUrl: "https://www.google.com/maps/search/?api=1&query=Our+Lady+of+Peace+and+Good+Voyage+Parish+Lodlod+Lipa+City+Batangas",
       facebookUrl: "https://www.facebook.com/olpgvparish.lodlod/",
       facebookLabel: "Parish Page",
