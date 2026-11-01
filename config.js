@@ -193,7 +193,7 @@ const WEDDING_CONFIG = {
     // and the account number/name; leave "qr" as "" for a placeholder box.
     bankToggle: "View Our Bank Details",
     accounts: [
-      { bank: "BPI", name: "Miyalanni Enna Solis Onquit", number: "1929454851", qr: "account_one.png" },
+      { bank: "BPI", name: "Miyalanni Enna Onquit", number: "1929454851", qr: "account_one.png" },
       { bank: "MariBank", name: "Miyalanni Enna Onquit", number: "11508446733", qr: "account_two.png" },
     ],
   },
