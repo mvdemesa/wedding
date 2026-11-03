@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes, viewport-fit=cover" />
 <meta id="meta-desc" name="description" content="December 19, 2026 - Lipa City, Batangas. You are lovingly invited to celebrate the wedding of Michael & Miyalanni." />
 <meta name="theme-color" content="#5A0F1D" />
 <link rel="canonical" href="https://mvdemesa.github.io/wedding/" />
@@ -557,15 +557,27 @@ section[id]{scroll-margin-top:64px}
 .sp-fg{display:grid;grid-template-columns:1fr 1fr;gap:.55rem 2.2rem;margin-top:.7rem}
 .sp-fg span{font-family:var(--body);color:var(--ivory);font-size:1.06rem}
 @media(max-width:640px){
-  .sp-duo{grid-template-columns:1fr;gap:2.2rem}
-  .sp-roles li{min-height:0}
+  .sp-wrap{max-width:100%}
+  .sp-block{margin-top:2.4rem}
+  .sp-group-title{font-size:clamp(2.2rem,9vw,2.8rem)}
+  .sp-label{font-size:.84rem;letter-spacing:.2em}
+  .sp-names{font-size:1.16rem;line-height:1.85}
+  .sp-sub{font-size:.82rem;letter-spacing:.2em}
+  .sp-duo{grid-template-columns:1fr;gap:2.6rem}
+  .sp-roles{max-width:320px}
+  .sp-roles li{min-height:0;padding:.75rem 0}
   .sp-roles li.sp-spacer{display:none}
-  .sp-bearers{grid-template-columns:1fr;gap:1.2rem}
-  .sp-fg{grid-template-columns:1fr;gap:.4rem}
-  .sp-pairs{grid-template-columns:1fr;gap:1rem}
-  .sp-pair{grid-template-columns:1fr;gap:.05rem;text-align:center}
+  .sp-roles .r-name{font-size:1.18rem}
+  .sp-roles .r-role{font-size:1.02rem}
+  .sp-bearers{grid-template-columns:1fr;gap:1.6rem}
+  .sp-bearer .r-role,.sp-fg-block>.r-role{font-size:.8rem}
+  .sp-bearer .r-name{font-size:1.18rem}
+  .sp-fg{grid-template-columns:1fr;gap:.6rem}
+  .sp-fg span{font-size:1.16rem}
+  .sp-pairs{grid-template-columns:1fr;gap:1.5rem;max-width:340px}
+  .sp-pair{grid-template-columns:1fr;gap:.12rem;text-align:center;font-size:1.14rem}
   .sp-pair span:first-child,.sp-pair span:last-child{text-align:center}
-  .sp-pair em{font-size:1.3em;margin:.1rem 0}
+  .sp-pair em{font-size:1.45em;margin:.08rem 0}
 }
 /* ============================================================ RESPONSIVE ============================================================ */
 @media(max-width:900px){ .gallery{grid-template-columns:repeat(2,1fr)} }
